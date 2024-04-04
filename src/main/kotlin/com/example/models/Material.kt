@@ -11,5 +11,6 @@ fun Material.toMaterialResponse(): MaterialResponse {
     return MaterialResponse(
         idMaterial = idMaterial,
         titulo = titulo,
-        descricao = descricao)
+        descricao = descricao
+    )
 }
