@@ -6,7 +6,7 @@ data class ItemEmprestimo(
     val IdItemEmprestimo: Int,
     val IdItemMaterial: Int,
     val IdAdministrador: Int,
-    //val Devolucao: Date
+    val Devolucao: String,
     val Status: Int 
 )
 
@@ -15,7 +15,7 @@ fun ItemEmprestimo.toItemEmprestimoResponse(): ItemEmprestimoResponse {
 	IdItemEmprestimo = IdItemEmprestimo,
 	IdItemMaterial = IdItemMaterial,
 	IdAdministrador = IdAdministrador,
-	//Devolucao: Date
+	Devolucao = Devolucao,
 	Status = Status
     )
 }
