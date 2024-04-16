@@ -4,7 +4,7 @@ import com.example.responses.EmprestimoResponse
 
 data class Emprestimo(
     val IdEmprestimo: Int,
-	val IdUsuario: Int,
+    val IdUsuario: Int,
     val StatusUsuario: Int,
     val QtdItens: Int,
     val Prazo: String
