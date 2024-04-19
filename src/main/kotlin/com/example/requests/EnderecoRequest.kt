@@ -6,7 +6,7 @@ import com.example.models.Endereco
 @Serializable
 class EnderecoRequest(
 	val Rua: String,
-	val Numero: Int
+	val Numero: Int,
 	val Bairro: String,
 	val Cidade: String,
 	val Estado: String,
@@ -15,12 +15,12 @@ class EnderecoRequest(
 
 fun EnderecoRequest.toEndereco(idEndereco: Int = 1): Endereco {
     return Endereco(
-        IdEndereco = IdEndereco,
-	Rua = Rua,
-	Numero = Numero,
-	Bairro = Bairro,
-	Cidade = Cidade,
-	Estado = Estado,
-	Cep = Cep
+        IdEndereco = idEndereco,
+		Rua = Rua,
+		Numero = Numero,
+		Bairro = Bairro,
+		Cidade = Cidade,
+		Estado = Estado,
+		Cep = Cep
     )
 }

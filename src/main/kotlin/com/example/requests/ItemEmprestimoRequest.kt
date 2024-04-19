@@ -11,12 +11,12 @@ class ItemEmprestimoRequest(
     val Status: Int 
 )
 
-fun ItemEmprestimoRequest.toItemEmprestimo(idItemEmprestimo: Int = 1): ItemEmprestimo {
+fun ItemEmprestimoRequest.toItemEmprestimo(IdItemEmprestimo: Int = 1): ItemEmprestimo {
     return ItemEmprestimo(
         IdItemEmprestimo = IdItemEmprestimo,
-	IdItemMaterial = IdItemMaterial,
-	IdAdministrador = IdAdministrador,
-	Devolucao = Devolucao,
-	Status = Status
+        IdItemMaterial = IdItemMaterial,
+        IdAdministrador = IdAdministrador,
+        Devolucao = Devolucao,
+        Status = Status
     )
 }

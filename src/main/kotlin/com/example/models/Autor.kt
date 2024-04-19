@@ -1,7 +1,6 @@
 package com.example.models
 
 import com.example.responses.AutorResponse
-import com.example.responses.MaterialResponse
 
 data class Autor(
     val idAutor: Int,

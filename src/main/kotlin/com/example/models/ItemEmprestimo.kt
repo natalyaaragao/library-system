@@ -6,16 +6,16 @@ data class ItemEmprestimo(
     val IdItemEmprestimo: Int,
     val IdItemMaterial: Int,
     val IdAdministrador: Int,
-    //val Devolucao: Date
-    val Status: Int 
+    val Devolucao: String,
+    val Status: Int
 )
 
 fun ItemEmprestimo.toItemEmprestimoResponse(): ItemEmprestimoResponse {
     return ItemEmprestimoResponse(
-	IdItemEmprestimo = IdItemEmprestimo,
-	IdItemMaterial = IdItemMaterial,
-	IdAdministrador = IdAdministrador,
-	//Devolucao: Date
-	Status = Status
+        IdItemEmprestimo = IdItemEmprestimo,
+        IdItemMaterial = IdItemMaterial,
+        IdAdministrador = IdAdministrador,
+        Devolucao = Devolucao,
+        Status = Status
     )
 }

@@ -1,7 +1,6 @@
 package com.example.models
 
 import com.example.responses.BibliotecaResponse
-import com.example.responses.MaterialResponse
 
 data class Biblioteca(
     val idBiblioteca: Int,
@@ -9,7 +8,7 @@ data class Biblioteca(
     val idEndereco: Int,
     val horarioFuncionamento: String,
     val telefone: String,
-    val email: String,
+    val email: String
 )
 
 fun Biblioteca.toBibliotecaResponse(): BibliotecaResponse {

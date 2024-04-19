@@ -4,9 +4,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class EmprestimoResponse(
-    val IdItemEmprestimo: Int,
-    val IdItemMaterial: Int,
-    val IdAdministrador: Int,
-    val Devolucao: String,
-    val Status: Int 
+    val IdEmprestimo: Int,
+    val IdUsuario: Int,
+    val StatusUsuario: Int,
+    val QtdItens: Int,
+    val Prazo: String
 )
