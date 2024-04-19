@@ -5,19 +5,19 @@ import com.example.models.Emprestimo
 
 @Serializable
 class EmprestimoRequest(
-    val IdUsuario: Int,
-    val StatusUsuario: Int,
-    val QtdItens: Int,
-    val Prazo: String 
+    val idUsuario: Int,
+    val statusUsuario: Int,
+    val qtdItens: Int,
+    val prazo: String
 
 )
 
 fun EmprestimoRequest.toEmprestimo(idEmprestimo: Int = 1): Emprestimo {
     return Emprestimo(
-        IdEmprestimo = idEmprestimo,
-        IdUsuario = IdUsuario,
-        StatusUsuario = StatusUsuario,
-        QtdItens = QtdItens,
-        Prazo = Prazo
+        idEmprestimo = idEmprestimo,
+        idUsuario = idUsuario,
+        statusUsuario = statusUsuario,
+        qtdItens = qtdItens,
+        prazo = prazo
     )
 }

@@ -5,18 +5,18 @@ import com.example.models.ItemEmprestimo
 
 @Serializable
 class ItemEmprestimoRequest(
-    val IdItemMaterial: Int,
-    val IdAdministrador: Int,
-    val Devolucao: String,
-    val Status: Int 
+    val idItemMaterial: Int,
+    val idAdministrador: Int,
+    val devolucao: String,
+    val status: Int
 )
 
-fun ItemEmprestimoRequest.toItemEmprestimo(IdItemEmprestimo: Int = 1): ItemEmprestimo {
+fun ItemEmprestimoRequest.toItemEmprestimo(idItemEmprestimo: Int = 1): ItemEmprestimo {
     return ItemEmprestimo(
-        IdItemEmprestimo = IdItemEmprestimo,
-        IdItemMaterial = IdItemMaterial,
-        IdAdministrador = IdAdministrador,
-        Devolucao = Devolucao,
-        Status = Status
+        idItemEmprestimo = idItemEmprestimo,
+        idItemMaterial = idItemMaterial,
+        idAdministrador = idAdministrador,
+        devolucao = devolucao,
+        status = status
     )
 }

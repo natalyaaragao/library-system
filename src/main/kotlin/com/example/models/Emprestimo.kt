@@ -3,19 +3,19 @@ package com.example.models
 import com.example.responses.EmprestimoResponse
 
 data class Emprestimo(
-    val IdEmprestimo: Int,
-	val IdUsuario: Int,
-    val StatusUsuario: Int,
-    val QtdItens: Int,
-    val Prazo: String
+    val idEmprestimo: Int,
+    val idUsuario: Int,
+    val statusUsuario: Int,
+    val qtdItens: Int,
+    val prazo: String
 )
 
 fun Emprestimo.toEmprestimoResponse(): EmprestimoResponse {
     return EmprestimoResponse(
-        IdEmprestimo = IdEmprestimo, 
-        IdUsuario = IdUsuario,
-        StatusUsuario = StatusUsuario,
-        QtdItens = QtdItens,
-        Prazo = Prazo
+        idEmprestimo = idEmprestimo,
+        idUsuario = idUsuario,
+        statusUsuario = statusUsuario,
+        qtdItens = qtdItens,
+        prazo = prazo
     )
 }

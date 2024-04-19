@@ -9,12 +9,6 @@ import com.example.services.*
 import com.example.modules.*
 
 fun Application.configureRouting(database: Database) {
-    /*routing {
-        singlePageApplication {
-            react("library-system-app")
-            useResources = true
-        }
-    }*/
     configureMaterialRouting(MaterialService(database))
     configureAutorRouting(AutorService(database))
 }

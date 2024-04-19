@@ -11,7 +11,7 @@ class LocalizacaoItemService(database: Database) {
     private object LocalizacaoItens: Table() {
         val idLocalizacaoItem = integer("idLocalizacaoItem").autoIncrement()
         val idSecao = integer("idSecao")
-        val localizacao = varchar("localizacao", 125)
+        val localizacao = varchar("localizacao", 128)
 
         override val primaryKey = PrimaryKey(idLocalizacaoItem)
     }
