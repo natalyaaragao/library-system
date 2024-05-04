@@ -1,0 +1,22 @@
+.containerList {
+    background-color: hsl(0, 0%, 100%);
+    padding: 20px 30px;
+}
+
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 10px 0;
+    padding: 15px;
+}
+
+.item:hover {
+    background-color: #f5f5f5;
+}
+
+.btnItem {
+    margin: 0 2px;
+    padding: 5px;
+    cursor: pointer;
+}

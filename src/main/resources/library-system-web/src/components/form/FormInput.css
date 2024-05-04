@@ -1,0 +1,38 @@
+.formInput {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+
+.labelForm {
+    color: #000;
+    text-transform: uppercase;
+    font-family: "Roboto";
+    font-weight: 700;
+    margin-bottom: 3px;
+}
+
+.inputForm {
+    padding: 10px;
+    border-radius: 2px;
+    border: 1px solid var(--primaryColor);
+    background-color: var(--primaryColor);
+}
+
+
+span{
+    font-size: 12px;
+    padding: 3px;
+    color: red;
+    display: none;
+}
+
+input:invalid[focused="true"] {
+    border: 1px solid red;
+}
+
+input:invalid[focused="true"] ~ span {
+    display: block;
+}
