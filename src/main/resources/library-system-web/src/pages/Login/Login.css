@@ -1,0 +1,59 @@
+.containerLogin {
+    background-color: #fff;;
+    height: 90vh;
+    width: 90vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5vh;
+}
+
+.imageLogin {
+    background-color: var(--buttonColor);
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.infoLogin {
+    width: 50%;
+    padding: 60px;
+    display: flex;
+    margin: 0 auto;
+    flex-direction: column;
+}
+
+label {
+    text-transform: uppercase;
+    padding: 3px 0;
+    font-weight: 700;
+    color: #3f3f3f;
+}
+
+input {
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 2px;
+    background-color: var(--primaryColor);
+}
+
+button {
+    padding: 8px 10px;
+    margin: 5px 0;
+    border-radius: 2px;
+    background-color: var(--primaryColor);
+    color: #000;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+}
+
+.btnEntar {
+    background-color: var(--buttonColor);
+    color: #fff;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
