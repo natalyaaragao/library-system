@@ -33,7 +33,7 @@ fun main() {
 fun Application.module() {
     configureSerialization()
     install(CORS) {
-        /* allowMethod(HttpMethod.Options)
+        allowMethod(HttpMethod.Options)
         allowMethod(HttpMethod.Put)
         allowMethod(HttpMethod.Delete)
         allowMethod(HttpMethod.Patch)
@@ -42,8 +42,7 @@ fun Application.module() {
         allowNonSimpleContentTypes = true
         allowCredentials = true
         allowSameOrigin = true
-        allowHost("*", listOf("http", "https")) */
-        anyHost()
+        allowHost("*", listOf("http", "https"))
     }
 
     val driverClassName = "org.h2.Driver"

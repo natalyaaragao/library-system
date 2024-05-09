@@ -11,4 +11,6 @@ import com.example.modules.*
 fun Application.configureRouting(database: Database) {
     configureMaterialRouting(MaterialService(database))
     configureAutorRouting(AutorService(database))
+    configureUsuarioRouting(UsuarioService(database))
+    configureDisciplinaRouting(DisciplinaService(database))
 }
