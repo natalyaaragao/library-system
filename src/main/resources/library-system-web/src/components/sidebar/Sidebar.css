@@ -3,9 +3,9 @@
     flex-direction: column;
     height: 100vh;
     width: 18vw;
-    left: 0px;
+    /*left: 0px;
     top: 0px;
-    bottom: 0px;
+    bottom: 0px;*/
     background: #fff;
     border-right: 1px solid #e0e0e0;
     gap: 10px;

@@ -1,0 +1,29 @@
+.containerBody {
+    width: 82vw;
+    height: 100vh;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    padding: 2rem;
+    overflow-y: scroll;
+}
+
+h1 {
+    font-weight: 700;
+    margin: 20px 0;
+}
+
+.containerTop {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.btn {
+    background-color: var(--buttonColor);
+    padding: 10px;
+    color: #fff;
+    max-height: 50px;
+    border: none;
+    cursor: pointer;
+}

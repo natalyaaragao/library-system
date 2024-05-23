@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import './Form.css'
-import FormInput from './FormInput';
+import FormInput from '../../components/form/FormInput'
+import '../../components/form/Form.css'
 
-const Form = () => {
+function AddBiblioteca() {
     const [values, setValues] = useState( {
         nome: "",
         horarioFuncionamento: "",
@@ -75,4 +75,4 @@ const Form = () => {
     );
 };
 
-export default Form;
+export default AddBiblioteca;

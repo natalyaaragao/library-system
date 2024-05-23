@@ -1,0 +1,32 @@
+.containerCard {
+    background-color: #fff;
+    padding: 20px 30px;
+}
+
+.card {
+    background-color: #fbfbfb;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.cardContent {
+    display: flex;
+    flex-direction: row;
+}
+
+.cardItem {
+    display: flex;
+    align-items: baseline;
+    margin: 5px 0;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+h3 {
+    margin-right: 3px;
+}
