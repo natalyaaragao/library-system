@@ -13,4 +13,5 @@ fun Application.configureRouting(database: Database) {
     configureAutorRouting(AutorService(database))
     configureUsuarioRouting(UsuarioService(database))
     configureDisciplinaRouting(DisciplinaService(database))
+    configureBibliotecaRouting(BibliotecaService(database))
 }

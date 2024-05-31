@@ -1,25 +1,27 @@
 package com.example.models
 
 import com.example.responses.EnderecoResponse
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Endereco(
-	val IdEndereco: Int,
-	val Rua: String,
-	val Numero: Int,
-	val Bairro: String,
-	val Cidade: String,
-	val Estado: String,
-	val Cep: Int
+	val idEndereco: Int,
+	val rua: String,
+	val numero: Int,
+	val bairro: String,
+	val cidade: String,
+	val estado: String,
+	val cep: Int
 )
 
 fun Endereco.toEnderecoResponse(): EnderecoResponse {
     return EnderecoResponse(
-        IdEndereco = IdEndereco,
-		Rua = Rua,
-		Numero = Numero,
-		Bairro = Bairro,
-		Cidade = Cidade,
-		Estado = Estado,
-		Cep = Cep
+        idEndereco = idEndereco,
+		rua = rua,
+		numero = numero,
+		bairro = bairro,
+		cidade = cidade,
+		estado = estado,
+		cep = cep
     )
 }

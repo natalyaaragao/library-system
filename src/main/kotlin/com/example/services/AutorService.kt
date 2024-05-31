@@ -41,7 +41,7 @@ class AutorService(database: Database) {
     }
 
     suspend fun addNewAutor(autor: Autor): Autor = dbQuery {
-        Autores.insertIgnore {
+        Autores.insert {
             it[nome] = autor.nome
         }.let {
             Autor(

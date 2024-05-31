@@ -37,7 +37,7 @@ fun Application.module() {
         allowNonSimpleContentTypes = true
         allowCredentials = true
         allowSameOrigin = true
-        allowHost("*", listOf("http", "https"))
+        anyHost()
     }
 
     val driverClassName = "org.h2.Driver"

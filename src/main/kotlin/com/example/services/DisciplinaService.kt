@@ -44,7 +44,7 @@ class DisciplinaService(database: Database) {
     }
 
     suspend fun addNewDisciplina(disciplina: Disciplina): Disciplina = dbQuery {
-        Disciplinas.insertIgnore {
+        Disciplinas.insert {
             it[departamento] = disciplina.departamento
             it[idMaterial] = disciplina.idMaterial
         }.let {

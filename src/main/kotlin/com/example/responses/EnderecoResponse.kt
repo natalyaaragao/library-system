@@ -4,11 +4,11 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 class EnderecoResponse(
-	val IdEndereco: Int,
-	val Rua: String,
-	val Numero: Int,
-	val Bairro: String,
-	val Cidade: String,
-	val Estado: String,
-	val Cep: Int
+	val idEndereco: Int,
+	val rua: String,
+	val numero: Int,
+	val bairro: String,
+	val cidade: String,
+	val estado: String,
+	val cep: Int
 )
