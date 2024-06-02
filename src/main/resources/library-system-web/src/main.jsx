@@ -6,6 +6,8 @@ import 'vite/modulepreload-polyfill'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Biblioteca from './pages/Biblioteca/Biblioteca.jsx'
 import Emprestimo from './pages/Emprestimo/Emprestimo.jsx'
+import Busca from './pages/Busca/Busca.jsx'
+import ReadBusca from './pages/Busca/ReadBusca.jsx'
 import Login from './pages/Login/Login.jsx'
 
 const router = createBrowserRouter([
@@ -15,17 +17,25 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/emprestimo",
-        element: <Emprestimo />,
+        element: <Emprestimo />
       },
       {
         path: "/biblioteca", 
-        element: <Biblioteca />,  
+        element: <Biblioteca />  
       },
+      {
+        path: "/busca",
+        element: <Busca />
+      },
+      {
+        path: "/buscaResultado",
+        element: <ReadBusca />
+      }
     ]
   },
   {
     path: "/login",
-    element: <Login />,
+    element: <Login />
   } 
 ])
 

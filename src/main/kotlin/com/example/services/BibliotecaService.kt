@@ -60,6 +60,13 @@ class BibliotecaService(database: Database) {
         Bibliotecas.selectAll().map { row -> row.toBiblioteca() }
     }
 
+    suspend fun getBibliotecaByCidade(cidade: String): List<Biblioteca>? = dbQuery {
+        Bibliotecas
+            .select { Bibliotecas.cidade eq cidade }
+            .map { row -> row.toBiblioteca() }
+            .singleOrNull()
+    }
+
     suspend fun findBiblioteca(idBiblioteca: Int): Biblioteca? = dbQuery {
         Bibliotecas
             .select { Bibliotecas.idBiblioteca eq idBiblioteca }

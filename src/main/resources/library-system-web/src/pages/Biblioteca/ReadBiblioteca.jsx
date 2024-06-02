@@ -1,7 +1,12 @@
+import { useState, useEffect } from 'react';
+import axios from "../../axiosInstance";
 import Card from '../../components/card/Card'
+import '../../components/form/FormSelect.css'
+import '../../components/form/Form.css'
+import { IoSearchOutline } from "react-icons/io5";
 
 function ReadBiblioteca() {
-    const items = [
+    /*const items = [
         {
             id: 1, 
             nome: "BBM- Biblioteca Brasiliana Guita e José Mindlin",
@@ -25,9 +30,63 @@ function ReadBiblioteca() {
             assuntos: "Educação em Ciências, Generalidades",
             areas: "Biológicas, Exatas, Humanas"
         }
-    ];
+    ];*/
+    const [items, setItems] = useState([]);
+    const [city, setCity] = useState([]);
+    const [area, setArea] = useState([]);
+    useEffect(() => {
+        axios.get("/bibliotecas").then((res) => {
+            return res.data;
+        })
+        .then((data) => {
+            console.log(data);
+            setItems(data);
+        });
+    }, []);
+    
+    const cidades = [
+        {value: '0', name: 'Cidade'},
+        {value: '1', name: 'Bauru'},
+        {value: '2', name: 'Itu'},
+        {value: '3', name: 'Lorena'},
+        {value: '4', name: 'Piracicaba'},
+        {value: '5', name: 'Pirassununga'},
+        {value: '6', name: 'Ribeirão Preto'},
+        {value: '7', name: 'São Carlos'},
+        {value: '8', name: 'São Paulo'},
+        {value: '9', name: 'São Sebastião'}
+    ]
+
+    const areaC = [
+        {value: '0', name: 'Área do conhecimento'},
+        {value: '1', name: 'Humanas'},
+        {value: '2', name: 'Exatas'},
+        {value: '3', name: 'Biológicas'}
+    ]
+
     return (
         <div className="containerCard">
+            <form className='containerFormSearch'>
+                <div className="formInput">
+                    <select name={city} onChange={e => setCity(e.target.value)}>
+                        {cidades.map((c) => (
+                            <option value={c.value}>{c.name}</option>
+                        ))}
+                    </select>
+                </div>
+                <div className="formInput">
+                    <select name={area} onChange={e => setArea(e.target.value)}>
+                        {areaC.map((c) => (
+                            <option value={c.value}>{c.name}</option>
+                        ))}
+                    </select>
+                </div>
+                <div className="formInput">
+                    <span className="icon"><IoSearchOutline size={20} /></span>
+                    <input type="text" placeholder='Buscar por nome ou assunto'/>
+                </div>    
+                <button className="inputButton"> Buscar </button>
+            </form>
             {items.map(
                 (item) => (
                     <Card 

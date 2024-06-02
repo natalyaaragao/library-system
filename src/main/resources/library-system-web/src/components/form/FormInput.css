@@ -1,9 +1,9 @@
 .formInput {
     display: flex;
     flex-direction: column;
-    margin-top: 15px;
-    margin-bottom: 15px;
-
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: auto;
 }
 
 .labelForm {
@@ -19,8 +19,8 @@
     border-radius: 2px;
     border: 1px solid var(--primaryColor);
     background-color: var(--primaryColor);
+    width: 150px;
 }
-
 
 span{
     font-size: 12px;

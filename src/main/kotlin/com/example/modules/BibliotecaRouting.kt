@@ -21,6 +21,13 @@ fun Application.configureBibliotecaRouting(
             }
             call.respond(HttpStatusCode.OK, response)
         }
+        get("/bibliotecas/{cidade}") {
+            val cidade = call.parameters["cidade"]?.toString() ?: throw IllegalArgumentException("Invalid Cidade")
+            val response = service.getBibliotecaByCidade(cidade).map {
+                it.toBibliotecaResponse()
+            }
+            call.respond(HttpStatusCode.OK, response)
+        }
         post("/bibliotecas") {
             val biblioteca = call.receive<BibliotecaRequest>().toBiblioteca()
             val response = service.addNewBiblioteca(biblioteca).toBibliotecaResponse()

@@ -1,0 +1,20 @@
+select {
+    padding: 8px;
+    border-radius: 2px;
+    border: 1px solid var(--primaryColor);
+    background-color: var(--primaryColor);
+}
+
+select:active {
+    outline: none;
+}
+
+select:focus {    
+    box-shadow: none;
+    outline: none;
+}
+  
+select option {
+    padding: 0.5rem;
+    border: none;
+}

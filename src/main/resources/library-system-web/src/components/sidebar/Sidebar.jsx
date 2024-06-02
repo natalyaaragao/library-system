@@ -18,10 +18,10 @@ export const Sidebar = () => {
                     </a>
                   </li>
                   <li className='menu-item'>
-                    <a href="#">
+                    <Link to="/busca">
                       <IoSearch className='menu-icon'/>
                       Busca
-                    </a>
+                    </Link>
                   </li>
                   <li className='menu-item'>
                     <Link to="/biblioteca">

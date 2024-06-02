@@ -8,7 +8,7 @@ export const Card = (props) => {
             <div className="col">
                 <div className="cardItem">
                     <h3>Telefone: </h3>
-                    <p>{props.tel}</p>
+                    <p>{props.telefone}</p>
                 </div>
                 <div className="cardItem">
                     <h3>Email: </h3>
@@ -20,7 +20,7 @@ export const Card = (props) => {
                 </div>
                 <div className="cardItem">
                     <h3>Endereço: </h3>
-                    <p>{props.endereco}</p>
+                    <p>{props.rua}, {props.numero} - {props.bairro} - {props.cep}</p>
                 </div>
                 <div className="cardItem">
                     <h3>Cidade: </h3>
@@ -30,7 +30,7 @@ export const Card = (props) => {
             <div className="col">
                 <div className="cardItem">
                     <h3>Atendimento: </h3>
-                    <p>{props.atendimento}</p>
+                    <p>{props.horarioFuncionamento}</p>
                 </div>
                 <div className="cardItem">
                     <h3>Assuntos: </h3>
@@ -38,7 +38,7 @@ export const Card = (props) => {
                 </div>
                 <div className="cardItem">
                     <h3>Areas: </h3>
-                    <p>{props.areas}</p>
+                    <p>{props.areaConhecimento}</p>
                 </div>
             </div>
           </div>

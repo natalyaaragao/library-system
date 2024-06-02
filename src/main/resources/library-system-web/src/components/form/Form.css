@@ -1,6 +1,21 @@
 .containerForm {
     background-color: #fff;
     padding: 20px 30px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    /*justify-content: space-between;
+    align-items: center;*/
+}
+
+.containerFormSearch {
+    background-color: #fff;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 2px;
 }
 
 .inputButton {
@@ -16,4 +31,9 @@
     font-size: 1rem;
 }
 
+p {
+    width: 100%;
+    font-size: 18px;
+    font-weight: 700;
+}
 
