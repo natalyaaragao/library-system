@@ -2,6 +2,7 @@ package com.example.modules
 
 import com.example.models.toMaterialResponse
 import com.example.services.MaterialService
+import com.example.requests.MaterialRequest
 import com.example.requests.toMaterial
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -25,6 +26,11 @@ fun Application.configureMaterialRouting(
                     material -> val response = material.toMaterialResponse()
                 call.respond(HttpStatusCode.OK, response)
             } ?: call.respond(HttpStatusCode.NotFound)
+        }
+        post("/materiais") {
+            val material = call.receive<MaterialRequest>().toMaterial()
+            val response = service.addNewMaterial(material).toMaterialResponse()
+            call.respond(HttpStatusCode.Created, response)
         }
         delete("/materiais/{id}") {
             val id = call.parameters["idMaterial"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")

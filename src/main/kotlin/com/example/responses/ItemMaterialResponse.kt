@@ -4,7 +4,8 @@ import kotlinx.serialization.Serializable
 @Serializable
 class ItemMaterialResponse(
     val idItemMaterial: Int,
-    val idLocalizacaoItem: Int,
+    val localizacaoItem: String,
+    val idMaterial: Int,
     val statusItem: Int,
     val colecao: String,
     val paginas: Int,

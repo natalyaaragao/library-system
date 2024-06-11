@@ -5,18 +5,20 @@ import com.example.responses.MaterialResponse
 
 data class ItemMaterial(
     val idItemMaterial: Int,
-    val idLocalizacaoItem: Int,
+    val idMaterial: Int,
     val statusItem: Int,
     val colecao: String,
     val paginas: Int,
     val numReservas: Int,
-    val codigoDeBarras: String
+    val codigoDeBarras: String,
+    val localizacaoItem: String
 )
 
 fun ItemMaterial.toItemMaterialResponse(): ItemMaterialResponse {
     return ItemMaterialResponse(
         idItemMaterial = idItemMaterial,
-        idLocalizacaoItem = idLocalizacaoItem,
+        localizacaoItem = localizacaoItem,
+        idMaterial = idMaterial,
         statusItem = statusItem,
         colecao = colecao,
         paginas = paginas,

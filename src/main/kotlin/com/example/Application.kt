@@ -9,7 +9,7 @@ import org.jetbrains.exposed.sql.Database
 import io.ktor.server.plugins.cors.routing.*
 import io.ktor.server.http.content.*
 import io.ktor.http.*
-
+import org.h2.tools.Server
 
 fun main() {
     /*embeddedServer(Netty, port = 4173, host = "0.0.0.0") {
@@ -43,5 +43,7 @@ fun Application.module() {
     val driverClassName = "org.h2.Driver"
     val jdbcURL = "jdbc:h2:file:./build/db"
     val database = Database.connect(jdbcURL, driverClassName)
+    val server: Server = Server.createWebServer("-web", "-webAllowOthers", "-webPort", "8082")
+    server.start()
     configureRouting(database)
 }

@@ -9,10 +9,10 @@ import org.jetbrains.exposed.sql.transactions.transaction
 
 class BibliotecaService(database: Database) {
 
-    private object Bibliotecas : Table()  {
+     object Bibliotecas : Table()  {
         val idBiblioteca = integer("idBiblioteca").autoIncrement()
         val nome = varchar("nome", 512)
-        val telefone = varchar("telefone", 20)
+        val telefone = varchar("telefone", 64)
         val horarioFuncionamento = varchar("horarioFuncionamento", 512)
         val email = varchar("email", 125)
         val site = varchar("site", 256)
@@ -60,12 +60,12 @@ class BibliotecaService(database: Database) {
         Bibliotecas.selectAll().map { row -> row.toBiblioteca() }
     }
 
-    suspend fun getBibliotecaByCidade(cidade: String): List<Biblioteca>? = dbQuery {
+    /*suspend fun getBibliotecaByCidade(cidade: String): List<Biblioteca> = dbQuery {
         Bibliotecas
             .select { Bibliotecas.cidade eq cidade }
             .map { row -> row.toBiblioteca() }
             .singleOrNull()
-    }
+    }*/
 
     suspend fun findBiblioteca(idBiblioteca: Int): Biblioteca? = dbQuery {
         Bibliotecas

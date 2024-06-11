@@ -5,8 +5,9 @@ import com.example.models.ItemMaterial
 
 @Serializable
 class ItemMaterialRequest(
-    val idLocalizacaoItem: Int,
+    val localizacaoItem: String,
     val statusItem: Int,
+    val idMaterial: Int,
     val colecao: String,
     val paginas: Int,
     val numReservas: Int,
@@ -16,7 +17,8 @@ class ItemMaterialRequest(
 fun ItemMaterialRequest.toItemMaterial(idItemMaterial: Int = 1): ItemMaterial {
     return ItemMaterial(
         idItemMaterial = idItemMaterial,
-        idLocalizacaoItem = idLocalizacaoItem,
+        localizacaoItem = localizacaoItem,
+        idMaterial = idMaterial,
         statusItem = statusItem,
         colecao = colecao,
         paginas = paginas,

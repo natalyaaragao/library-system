@@ -8,7 +8,7 @@ import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransacti
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
 class LocalizacaoItemService(database: Database) {
-    private object LocalizacaoItens: Table() {
+    object LocalizacaoItens: Table() {
         val idLocalizacaoItem = integer("idLocalizacaoItem").autoIncrement()
         val idSecao = integer("idSecao")
         val localizacao = varchar("localizacao", 128)

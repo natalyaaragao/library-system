@@ -1,7 +1,6 @@
 package com.example.models
 
 import com.example.responses.LocalizacaoItemResponse
-
 data class LocalizacaoItem(
     val idLocalizacaoItem: Int,
     val idSecao: Int,

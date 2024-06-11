@@ -10,7 +10,12 @@ class UsuarioRequest(
     val nusp: Int,
     val telefone: String,
     val email: String,
-    val idEndereco: Int
+    val rua: String,
+	val numero: Int,
+	val bairro: String,
+	val cidade: String,
+	val estado: String,
+	val cep: Int
 )
 
 fun UsuarioRequest.toUsuario(idUsuario: Int = 1): Usuario {
@@ -21,6 +26,11 @@ fun UsuarioRequest.toUsuario(idUsuario: Int = 1): Usuario {
         nusp = nusp,
         telefone = telefone,
         email = email,
-        idEndereco = idEndereco
+        rua = rua,
+		numero = numero,
+		bairro = bairro,
+		cidade = cidade,
+		estado = estado,
+		cep = cep
     )
 }

@@ -6,14 +6,16 @@ import com.example.models.Secao
 @Serializable
 class SecaoRequest(
     val idBiblioteca: Int,
-    val nomeSecao: String
+    val nomeSecao: String,
+    val siglaSecao: String
 )
 
 fun SecaoRequest.toSecao(idSecao: Int = 1): Secao {
     return Secao(
         idSecao = idSecao,
         idBiblioteca = idBiblioteca,
-        nomeSecao = nomeSecao
+        nomeSecao = nomeSecao,
+        siglaSecao = siglaSecao
     )
 }
 

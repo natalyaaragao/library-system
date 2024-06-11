@@ -8,9 +8,10 @@ import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransacti
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
 class ItemMaterialService(database: Database) {
-    private object ItensMateriais : Table()  {
+    object ItensMateriais : Table()  {
         val idItemMaterial = integer("idSecao").autoIncrement()
-        val idLocalizacaoItem = integer("idLocalizacaoItem").autoIncrement()
+        val localizacaoItem = varchar("localizacaoItem", 512)
+        val idMaterial = integer("idMaterial")
         val statusItem = integer("statusItem")
         val colecao = varchar("colecao", 512)
         val paginas = integer("paginas")
@@ -31,7 +32,8 @@ class ItemMaterialService(database: Database) {
 
     private fun ResultRow.toItemMaterial() = ItemMaterial(
         idItemMaterial = this[ItensMateriais.idItemMaterial],
-        idLocalizacaoItem = this[ItensMateriais.idLocalizacaoItem],
+        localizacaoItem = this[ItensMateriais.localizacaoItem],
+        idMaterial = this[ItensMateriais.idMaterial],
         statusItem = this[ItensMateriais.statusItem],
         colecao = this[ItensMateriais.colecao],
         paginas = this[ItensMateriais.paginas],
@@ -51,8 +53,9 @@ class ItemMaterialService(database: Database) {
     }
 
     suspend fun addNewItemMaterial(itemMaterial: ItemMaterial): ItemMaterial = dbQuery {
-        ItensMateriais.insertIgnore {
-            it[idLocalizacaoItem] = itemMaterial.idLocalizacaoItem
+        ItensMateriais.insert {
+            it[localizacaoItem] = itemMaterial.localizacaoItem
+            it[idMaterial] = itemMaterial.idMaterial
             it[statusItem] = itemMaterial.statusItem
             it[colecao] = itemMaterial.colecao
             it[paginas] = itemMaterial.paginas
@@ -61,7 +64,8 @@ class ItemMaterialService(database: Database) {
         }.let {
             ItemMaterial(
                 idItemMaterial = it[ItensMateriais.idItemMaterial],                
-                idLocalizacaoItem = it[ItensMateriais.idLocalizacaoItem],
+                localizacaoItem = it[ItensMateriais.localizacaoItem],
+                idMaterial = it[ItensMateriais.idMaterial],
                 statusItem = it[ItensMateriais.statusItem],
                 colecao = it[ItensMateriais.colecao],
                 paginas = it[ItensMateriais.paginas],
@@ -71,11 +75,12 @@ class ItemMaterialService(database: Database) {
         }
     }
 
-    suspend fun editItemMaterial(idItemMaterial: Int,idLocalizacaoItem: Int, statusItem: Int,
+    suspend fun editItemMaterial(idItemMaterial: Int, localizacaoItem: String, statusItem: Int,
                           colecao: String, paginas: Int, numReservas: Int, codigoDeBarras: String): Boolean =
         dbQuery {
             ItensMateriais.update({ ItensMateriais.idItemMaterial eq idItemMaterial }) {
-                it[ItensMateriais.idLocalizacaoItem] = idLocalizacaoItem
+                it[ItensMateriais.localizacaoItem] = localizacaoItem
+                it[ItensMateriais.idMaterial] = idMaterial
                 it[ItensMateriais.statusItem] = statusItem
                 it[ItensMateriais.colecao] = colecao
                 it[ItensMateriais.paginas] = paginas

@@ -8,11 +8,11 @@ import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransacti
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
 class SecaoService(database: Database) {
-    private object Secoes : Table()  {
+     object Secoes : Table()  {
         val idSecao = integer("idSecao").autoIncrement()
-    	val idBiblioteca = integer("idBiblioteca").autoIncrement()
+    	val idBiblioteca = integer("idBiblioteca")
     	val nomeSecao = varchar("nomeSecao", 256)
-        
+        val siglaSecao = varchar("siglaSecao", 16)
         override val primaryKey = PrimaryKey(idSecao)
     }
 
@@ -28,7 +28,8 @@ class SecaoService(database: Database) {
     private fun ResultRow.toSecao() = Secao(
         idSecao = this[Secoes.idSecao],
         idBiblioteca = this[Secoes.idBiblioteca],
-        nomeSecao = this[Secoes.nomeSecao]
+        nomeSecao = this[Secoes.nomeSecao],
+        siglaSecao = this[Secoes.siglaSecao]
     )
 
     suspend fun allSecoes(): List<Secao> = dbQuery {
@@ -43,14 +44,16 @@ class SecaoService(database: Database) {
     }
 
     suspend fun addNewSecao(secao: Secao): Secao = dbQuery {
-        Secoes.insertIgnore {
+        Secoes.insert {
             it[idBiblioteca] = secao.idBiblioteca
             it[nomeSecao] = secao.nomeSecao
+            it[siglaSecao] = secao.siglaSecao
         }.let {
             Secao(
                 idSecao = it[Secoes.idSecao],
                 idBiblioteca = it[Secoes.idBiblioteca],
-            	nomeSecao = it[Secoes.nomeSecao]
+            	nomeSecao = it[Secoes.nomeSecao],
+                siglaSecao = it[Secoes.siglaSecao]
             )
         }
     }
@@ -60,6 +63,7 @@ class SecaoService(database: Database) {
             Secoes.update({ Secoes.idSecao eq idSecao }) {
                 it[Secoes.idBiblioteca] = idBiblioteca
                 it[Secoes.nomeSecao] = nomeSecao
+                it[Secoes.siglaSecao] = siglaSecao
             } > 0
         }
 

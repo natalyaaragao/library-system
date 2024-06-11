@@ -15,7 +15,12 @@ class UsuarioService(database: Database) {
         val nusp = integer("nusp")
         val telefone = varchar("telefone", 15)
         val email = varchar("email", 128)
-        val idEndereco = integer("idEndereco")
+        val rua = varchar("rua", 1024)
+        val numero = integer("numero")
+        val bairro = varchar("bairro", 512)
+        val cidade = varchar("cidade", 512)
+        val estado = varchar("estado", 128)
+        val cep = integer("cep")
 
         override val primaryKey = PrimaryKey(idUsuario)
     }
@@ -36,7 +41,12 @@ class UsuarioService(database: Database) {
         nusp = this[Usuarios.nusp],
         telefone = this[Usuarios.telefone],
         email = this[Usuarios.email],
-        idEndereco = this[Usuarios.idEndereco],
+        rua = this[Usuarios.rua], 
+        numero = this[Usuarios.numero], 
+        bairro = this[Usuarios.bairro], 
+        cidade = this[Usuarios.cidade], 
+        estado = this[Usuarios.estado],  
+        cep = this[Usuarios.cep]
     )
 
     suspend fun allUsuarios(): List<Usuario> = dbQuery {
@@ -51,13 +61,18 @@ class UsuarioService(database: Database) {
     }
 
     suspend fun addNewUsuario(usuario: Usuario): Usuario = dbQuery {
-        Usuarios.insertIgnore {
+        Usuarios.insert {
             it[nome] = usuario.nome
             it[cpf] = usuario.cpf
             it[nusp] = usuario.nusp
             it[telefone] = usuario.telefone
             it[email] = usuario.email
-            it[idEndereco] = usuario.idEndereco
+            it[rua] = usuario.rua 
+            it[numero] = usuario.numero
+            it[bairro] = usuario.bairro
+            it[cidade] = usuario.cidade
+            it[estado] = usuario.estado
+            it[cep] = usuario.cep
         }.let {
             Usuario(
                 idUsuario = it[Usuarios.idUsuario],
@@ -66,7 +81,12 @@ class UsuarioService(database: Database) {
                 nusp = it[Usuarios.nusp],
                 telefone = it[Usuarios.telefone],
                 email = it[Usuarios.email],
-                idEndereco = it[Usuarios.idEndereco],
+                rua = it[Usuarios.rua], 
+                numero = it[Usuarios.numero], 
+                bairro = it[Usuarios.bairro], 
+                cidade = it[Usuarios.cidade], 
+                estado = it[Usuarios.estado],  
+                cep = it[Usuarios.cep]
             )
         }
     }
@@ -79,7 +99,12 @@ class UsuarioService(database: Database) {
                 it[Usuarios.nusp] = usuario.nusp
                 it[Usuarios.telefone] = usuario.telefone
                 it[Usuarios.email] = usuario.email
-                it[Usuarios.idEndereco] = usuario.idEndereco
+                it[Usuarios.rua] = usuario.rua 
+                it[Usuarios.numero] = usuario.numero
+                it[Usuarios.bairro] = usuario.bairro 
+                it[Usuarios.cidade] = usuario.cidade 
+                it[Usuarios.estado] = usuario.estado 
+                it[Usuarios.cep] = usuario.cep 
             } > 0
         }
 

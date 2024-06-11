@@ -6,5 +6,6 @@ import kotlinx.serialization.Serializable
 class SecaoResponse(
     val idSecao: Int,
     val idBiblioteca: Int,
-    val nomeSecao: String
+    val nomeSecao: String,
+    val siglaSecao: String
 )

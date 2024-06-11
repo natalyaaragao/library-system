@@ -10,5 +10,10 @@ class UsuarioResponse(
     val nusp: Int,
     val telefone: String,
     val email: String,
-    val idEndereco: Int
+    val rua: String,
+	val numero: Int,
+	val bairro: String,
+	val cidade: String,
+	val estado: String,
+	val cep: Int
 )

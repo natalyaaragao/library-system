@@ -6,13 +6,15 @@ import com.example.responses.SecaoResponse
 data class Secao(
     val idSecao: Int,
     val idBiblioteca: Int,
-    val nomeSecao: String
+    val nomeSecao: String,
+    val siglaSecao: String
 )
 
 fun Secao.toSecaoResponse(): SecaoResponse {
     return SecaoResponse(
         idSecao = idSecao,
         idBiblioteca = idBiblioteca,
-        nomeSecao = nomeSecao
+        nomeSecao = nomeSecao,
+        siglaSecao = siglaSecao
     )
 }
