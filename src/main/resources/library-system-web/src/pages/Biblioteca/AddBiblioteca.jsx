@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import FormInput from '../../components/form/FormInput'
 import '../../components/form/Form.css'
 import axios from "../../axiosInstance";
+import TextField from '@mui/material/TextField';
+import MenuItem from '@mui/material/MenuItem';
 
 function AddBiblioteca() {
     const [values, setValues] = useState( {
@@ -28,7 +29,7 @@ function AddBiblioteca() {
             type: "text",
             placeholder: "Nome",
             label: "Nome",
-            style: {width: "42vw"},
+            width: '48%',
             required: true
         },
         {
@@ -37,7 +38,7 @@ function AddBiblioteca() {
             type: "text",
             placeholder: "Horário de Funcionamento",
             label: "Horário de Funcionamento",
-            style: {width: "30vw"},
+            width: '48%',
             required: true
         },
         {
@@ -47,7 +48,7 @@ function AddBiblioteca() {
             placeholder: "Telefone",
             errorMessage: "Telefone inválido!",
             label: "Telefone",
-            style: {width: "23vw"},
+            width: '48%',
             required: true
         },
         {
@@ -57,7 +58,7 @@ function AddBiblioteca() {
             placeholder: "Email",
             errorMessage: "Email inválido!",
             label: "Email",
-            style: {width: "25vw"},
+            width: '48%',
             required: true
         },
         {
@@ -67,7 +68,7 @@ function AddBiblioteca() {
             placeholder: "Site",
             errorMessage: "Site inválido!",
             label: "Site",
-            style: {width: "23vw"},
+            width: '48%',
             required: true
         },
         {
@@ -76,25 +77,8 @@ function AddBiblioteca() {
             type: "text",
             placeholder: "Assuntos",
             label: "Assuntos",
-            style: {width: "23vw"},
+            width: '48%',
             required: false
-        },
-        {
-            id: 7,
-            name: "areaConhecimento",
-            type: "text",
-            placeholder: "Área do conhecimento",
-            label: "Área do conhecimento",
-            style: {width: "25vw"},
-            required: true
-        },
-        {
-            id: 8,
-            name: "recursos",
-            type: "text",
-            placeholder: "Recursos",
-            style: {width: "23vw"},
-            label: "Recursos",
         }
     ];
 
@@ -105,59 +89,71 @@ function AddBiblioteca() {
             type: "text",
             placeholder: "Rua",
             label: "Rua",
-            style: {width: "60vw"},
+            width: '68%',
             required: true
         },
         {
             id: 2,
-            name: "numero",
-            type: "number",
-            placeholder: "Número",
-            label: "Número",
-            style: {width: "12vw"},
-            required: true
-        },
-        {
-            id: 3,
-            name: "bairro",
-            type: "text",
-            placeholder: "Bairro",
-            errorMessage: "Bairro inválido!",
-            label: "Bairro",
-            style: {width: "25vw"},
-            required: true
-        },
-        {
-            id: 4,
-            name: "cidade",
-            type: "text",
-            placeholder: "Cidade",
-            errorMessage: "Cidade inválida!",
-            label: "Cidade",
-            style: {width: "25vw"},
-            required: true
-        },
-        {
-            id: 5,
-            name: "estado",
-            type: "text",
-            placeholder: "Estado",
-            errorMessage: "Estado inválido!",
-            label: "Estado",
-            style: {width: "10vw"},
-            required: true
-        },
-        {
-            id: 6,
             name: "cep",
             type: "text",
             placeholder: "Cep",
             errorMessage: "Cep inválido!",
             label: "Cep",
-            style: {width: "10vw"},
+            width: '17.5%',
+            required: true
+        },
+        {
+            id: 3,
+            name: "numero",
+            type: "number",
+            placeholder: "Número",
+            label: "Número",
+            width: '8%',
+            required: true
+        },
+        {
+            id: 4,
+            name: "bairro",
+            type: "text",
+            placeholder: "Bairro",
+            errorMessage: "Bairro inválido!",
+            label: "Bairro",
+            width: '33.6%',
+            required: true
+        },
+        {
+            id: 5,
+            name: "cidade",
+            type: "text",
+            placeholder: "Cidade",
+            errorMessage: "Cidade inválida!",
+            label: "Cidade",
+            width: '30%',
+            required: true
+        },
+        {
+            id: 6,
+            name: "estado",
+            type: "text",
+            placeholder: "Estado",
+            errorMessage: "Estado inválido!",
+            label: "Estado",
+            width: '30%',
             required: true
         }
-    ]
+    ];
+
+    const areaConhecimento = [
+        { id: 1, name: 'Humanas'},
+        { id: 2, name: 'Exatas'},
+        { id: 3, name: 'Biológicas'}
+    ];
+
+    const recursos = [
+        { id: 1, name: 'Sala de estudos 24 horas'},
+        { id: 2, name: 'Caixa de devolução 24 horas'},
+        { id: 3, name: 'Espaço de coworking'}
+    ];
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -173,25 +169,64 @@ function AddBiblioteca() {
     return (
         <div>
             <form className="containerForm" onSubmit={handleSubmit}>
+            
                 {inputs.map(
                     (input) => (
-                        <FormInput 
-                            key = {input.id} 
-                            {...input} 
-                            value = {values[input.name]}
-                            onChange={handleInput}
-                        />
+                    <TextField
+                        key = {input.id}
+                        label={input.label}
+                        id="outlined-size-normal"
+                        defaultValue=" "
+                        onChange={handleInput}
+                        sx={{ m: 1, width: input.width }}
+                        value = {values[input.name]}
+                        name = {input.name}
+                    />
                     )
                 )}
+                <TextField
+                    select
+                    fullWidth
+                    label="Área do conhecimento"
+                    defaultValue=""
+                    onChange={handleInput}
+                    name = "areaConhecimento"
+                    sx={{ m: 1, width: '48%' }}
+                >
+                    {areaConhecimento.map((option) => (
+                        <MenuItem key={option.id} value={option.name}>
+                            {option.name}
+                        </MenuItem>
+                    ))}
+                </TextField>
+                <TextField
+                    select
+                    fullWidth
+                    label="Recursos"
+                    defaultValue=""
+                    onChange={handleInput}
+                    name="recursos"
+                    sx={{ m: 1, width: '48%' }}
+                >
+                    {recursos.map((option) => (
+                        <MenuItem key={option.id} value={option.name}>
+                            {option.name}
+                        </MenuItem>
+                    ))}
+                </TextField>
                 <p>Endereço</p>
                 {inputsEndereco.map(
                     (input) => (
-                        <FormInput 
-                            key = {input.id} 
-                            {...input} 
-                            value = {values[input.name]}
-                            onChange={handleInput}
-                        />
+                    <TextField
+                        key = {input.id}
+                        label={input.label}
+                        id="outlined-size-normal"
+                        defaultValue=" "
+                        onChange={handleInput}
+                        sx={{ m: 1, width: input.width }}
+                        value = {values[input.name]}
+                        name = {input.name}
+                    />
                     )
                 )}
                 <button className="inputButton">Enviar</button>
@@ -202,3 +237,4 @@ function AddBiblioteca() {
 };
 
 export default AddBiblioteca;
+
