@@ -1,6 +1,12 @@
 import React from 'react'
-import '../../components/form/FormInput.css'
+import '../../components/form/Form.css'
 import '../../components/table/Table.css'
+import TextField from '@mui/material/TextField';
+import CustomTable from '../../components/table/CustomTable'
+
+function createData(titulo, status, emprestimo, localizacao) {
+    return {titulo, status, emprestimo, localizacao};
+  }
 
 function ReadBusca() {
     const data = {
@@ -14,70 +20,91 @@ function ReadBusca() {
         assuntos: "Cálculo Diferencial e Integral"
     }
 
+    const col = [
+        { id: 'titulo', label: 'Biblioteca', minWidth: 270 },
+        { id: 'status', label: 'Status', minWidth: 100, tag: true, color: '#ccc' },
+        { id: 'emprestimo', label: 'Empréstimo', minWidth: 100, tag: true, color: '#f1f1f1' },
+        { id: 'localizacao', label: 'Localização', minWidth: 270 }
+    ];
+
+    const row = [
+        createData('Biblioteca 1', 'Disponível', 'Sim', '24, 4.0'),
+        createData('Biblioteca 2', 'Indisponível', 'Não', '37, 4.3'),
+        createData('Biblioteca 3', 'Indisponível', 'Não', '24, 6.0'),
+        createData('Biblioteca 4', 'Disponível', 'Sim', '67, 4.3'),
+        createData('Biblioteca 5', 'Disponível', 'Não', '49, 3.9'),
+    ];
+
     return (
         <section className="containerBody">
             <div className="containerCard">
-                <p>{data.nome}</p>
-                <form>
-                    <div div className="formInput">
-                        <label>Autor</label>
-                        <input type="text" value={data.autor} disabled/>
-                    </div>
-                    <div className="formInput">
-                        <label>Idioma</label>
-                        <input type="text" value={data.autor} disabled/>
-                    </div>
-                    <div className="formInput">
-                        <label>Tipo</label>
-                        <input type="text" value={data.tipo} disabled/>
-                    </div>
-                    <div className="formInput">
-                        <label>Data de publicação</label>
-                        <input type="text" value={data.dataPublicacao} disabled/>
-                    </div>
-                    <div className="formInput">
-                        <label>Formato</label>
-                        <input type="text" value={data.formato} disabled/>
-                    </div>
-                    <div className="formInput">
-                        <label>Editor</label>
-                        <input type="text" value={data.editor} disabled/>
-                    </div>
-                    <div className="formInput">
-                        <label>Assuntos</label>
-                        <input type="text" value={data.assuntos} disabled/>
-                    </div>
-                </form>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Biblioteca</th>
-                            <th>Status</th>
-                            <th>Emprétimo</th>
-                            <th>Localização</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Nome da biblioteca</td>
-                            <td>Disponível</td>
-                            <td><p className='active'>Sim</p></td>
-                            <td>Localização do item</td>
-                        </tr>
-                        <tr>
-                            <td>Nome da biblioteca</td>
-                            <td>Disponível</td>
-                            <td><p className='active'>Sim</p></td>
-                            <td>Localização do item</td>
-                        </tr>
-                        <tr>
-                            <td>Nome da biblioteca</td>
-                            <td>Disponível</td>
-                            <td><p className='nonActive'>Não</p></td>
-                            <td>Localização do item</td>
-                        </tr>
-                    </tbody>
-                </table> 
+                <h1>{data.nome}</h1>
+                <div>
+                    <TextField
+                        id="outlined-read-only-input"
+                        label="Autor"
+                        defaultValue={data.autor}
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                        sx={{ m: 1, width: '48%' }}
+                    />
+                    <TextField
+                        id="outlined-read-only-input"
+                        label="Idioma"
+                        defaultValue={data.idioma}
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                        sx={{ m: 1, width: '18%' }}
+                    />
+                    <TextField
+                        id="outlined-read-only-input"
+                        label="Tipo de material"
+                        defaultValue={data.tipo}
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                        sx={{ m: 1, width: '28%' }}
+                    />
+                    <TextField
+                        id="outlined-read-only-input"
+                        label="Data de publicação"
+                        defaultValue={data.dataPublicacao}
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                        sx={{ m: 1, width: '18%' }}
+                    />
+                    <TextField
+                        id="outlined-read-only-input"
+                        label="Formato"
+                        defaultValue={data.formato}
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                        sx={{ m: 1, width: '28%' }}
+                    />
+                    <TextField
+                        id="outlined-read-only-input"
+                        label="Editor"
+                        defaultValue={data.editor}
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                        sx={{ m: 1, width: '48%' }}
+                    />
+                    <TextField
+                        id="outlined-read-only-input"
+                        label="Assuntos"
+                        defaultValue={data.assuntos}
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                        sx={{ m: 1, width: '97%' }}
+                    />
+                </div>
+                <CustomTable columns = {col} rows = {row} />
             </div>
         </section>
         

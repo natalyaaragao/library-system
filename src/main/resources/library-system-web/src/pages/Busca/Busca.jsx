@@ -2,8 +2,12 @@ import '../../components/Body.css';
 import React from 'react'
 import { useState } from "react";
 import axios from "../../axiosInstance";
-import FormInput from '../../components/form/FormInput'
+import Button from '@mui/material/Button';
 import '../../components/form/Form.css'
+import { IoSearchOutline } from "react-icons/io5";
+import MenuItem from '@mui/material/MenuItem';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
 
 function Busca() {
   const [post, setPost] = useState({
@@ -12,8 +16,41 @@ function Busca() {
     base: '',
     idioma: '',
     tipoMaterial: '',
-    baseDados: ''
   })
+
+  const [nome, setNome] = useState([])
+  const [base, setBase] = useState([])
+  const [campoBusca, setCampoBusca] = useState([])
+  const [idioma, setIdioma] = useState([])
+  const [tipoMaterial, setTipoMaterial] = useState([])
+
+  const bases = [
+    {value: '0', name: 'Catálogo geral'},
+    {value: '1', name: 'Biblioteca 1'},
+    {value: '2', name: 'Biblioteca 2'},
+    {value: '3', name: 'Biblioteca 3'},
+  ]
+
+  const camposBusca = [
+    {value: '0', name: 'Todos os campos'},
+    {value: '1', name: 'Título'},
+    {value: '2', name: 'Autor'},
+    {value: '3', name: 'Assunto'},
+  ]
+
+  const idiomas = [
+    {value: '0', name: 'Todos'},
+    {value: '1', name: 'Português'},
+    {value: '2', name: 'Inglês'}
+  ]
+
+  const tiposMaterial = [
+    {value: '0', name: 'Todos'},
+    {value: '1', name: 'Livro'},
+    {value: '2', name: 'Tese'},
+    {value: '3', name: 'Artigo'},
+  ]
+
 
   const inputs = [
     {
@@ -25,27 +62,11 @@ function Busca() {
         required: true
     },
     {
-      id: 2,
-      name: "campoBusca",
-      type: "text",
-      placeholder: "Todos",
-      label: "Campo para busca",
-      required: false
-    },
-    {
       id: 3,
       name: "base",
       type: "text",
       placeholder: "Todos os campos",
       label: "Catálogo geral",
-      required: false
-    },
-    {
-      id: 4,
-      name: "idioma",
-      type: "text",
-      placeholder: "Todos",
-      label: "Idioma",
       required: false
     },
     {
@@ -56,14 +77,6 @@ function Busca() {
       label: "Base de dados",
       required: false
     },
-    {
-      id: 6,
-      name: "tipoMaterial",
-      type: "text",
-      placeholder: "Todos",
-      label: "Tipo de material",
-      required: false
-    }
   ]
   const handleInput = (e) => {
       setPost({...post, [e.target.name]: e.target.value})
@@ -82,18 +95,94 @@ function Busca() {
           </div>
           <div className="containerCard">
             <form onSubmit={handleSubmit}>
-                {inputs.map(
-                    (input) => (
-                        <FormInput 
-                            key = {input.id} 
-                            {...input} 
-                            value = {post[input.name]}
-                            onChange={handleInput}
-                        />
-                    )
-                )}
-                <br/>
-                <button>Enviar</button>
+                <div className='containerFormSearch'>
+                  <TextField
+                      id="outlined-basic"
+                      placeholder="Buscar por nome"
+                      variant="outlined"
+                      fullWidth
+                      InputProps={{
+                          startAdornment: (
+                          <InputAdornment position="start">
+                              <IoSearchOutline color="action" />
+                          </InputAdornment>
+                          ),
+                      }}
+                      onChange={(event) => {
+                        setNome(event.target.value);
+                      }}
+                  />
+                </div>
+                <div className='containerFormSearch'>
+                <TextField
+                  id="outlined-select-currency"
+                  select
+                  label="Idioma"
+                  defaultValue="0"
+                  onChange={(event) => {
+                    setIdioma(event.target.value);
+                  }}
+                  sx={{ width: '15%' }}
+                >
+                  {idiomas.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.name}
+                    </MenuItem>
+                  ))}
+                </TextField>
+                <TextField
+                  id="outlined-select-currency"
+                  select
+                  label="Campo para busca"
+                  defaultValue="0"
+                  onChange={(event) => {
+                    setCampoBusca(event.target.value);
+                  }}
+                  sx={{ width: '20%' }}
+                >
+                  {camposBusca.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.name}
+                    </MenuItem>
+                  ))}
+                </TextField>
+                <TextField
+                  id="outlined-select-currency"
+                  select
+                  label="Tipo de material"
+                  defaultValue="0"
+                  onChange={(event) => {
+                    setTipoMaterial(event.target.value);
+                  }}
+                  sx={{ width: '20%' }}
+                >
+                  {tiposMaterial.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.name}
+                    </MenuItem>
+                  ))}
+                </TextField>
+                <TextField
+                  id="outlined-select-currency"
+                  select
+                  label="Base para busca"
+                  defaultValue="0"
+                  onChange={(event) => {
+                    setBase(event.target.value);
+                  }}
+                  sx={{ width: '45%' }}
+                >
+                  {bases.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.name}
+                    </MenuItem>
+                  ))}
+                </TextField>
+                  
+                <Button variant="outlined" startIcon={<IoSearchOutline />}>
+                  Buscar
+                </Button>
+                </div>
             </form>
           </div>
       </section>

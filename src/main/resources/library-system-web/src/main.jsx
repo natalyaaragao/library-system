@@ -9,6 +9,9 @@ import Emprestimo from './pages/Emprestimo/Emprestimo.jsx'
 import Busca from './pages/Busca/Busca.jsx'
 import ReadBusca from './pages/Busca/ReadBusca.jsx'
 import Login from './pages/Login/Login.jsx'
+import Secao from './pages/Secao/Secao.jsx'
+import Material from './pages/Material/Material.jsx'
+import Lista from './pages/Lista/Lista.jsx'
 
 const router = createBrowserRouter([
   {
@@ -30,7 +33,19 @@ const router = createBrowserRouter([
       {
         path: "/buscaResultado",
         element: <ReadBusca />
-      }
+      },
+      {
+        path: "/secao",
+        element: <Secao />
+      },
+      {
+        path: "/material",
+        element: <Material />
+      },
+      {
+        path: "/lista",
+        element: <Lista />
+      },
     ]
   },
   {

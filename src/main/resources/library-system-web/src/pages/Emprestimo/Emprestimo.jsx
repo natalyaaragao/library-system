@@ -1,9 +1,9 @@
+import react from 'react';
+import MeusEmprestimos from './MeusEmprestimos';
 
 function Emprestimo() {
     return (
-        <div className="containerCard">
-            <p>Criar página de empréstimo</p>
-        </div>
+        <MeusEmprestimos />
     );
 };
 

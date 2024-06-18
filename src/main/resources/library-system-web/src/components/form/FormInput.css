@@ -1,4 +1,4 @@
-.formInput {
+/*.formInput {
     display: flex;
     flex-direction: column;
     margin-top: 5px;
@@ -35,4 +35,4 @@ input:invalid[focused="true"] {
 
 input:invalid[focused="true"] ~ span {
     display: block;
-}
+}*/

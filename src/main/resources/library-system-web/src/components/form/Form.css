@@ -5,8 +5,9 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
-    /*justify-content: space-between;
-    align-items: center;*/
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .containerFormSearch {
@@ -15,7 +16,7 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    gap: 2px;
+    gap: 8px;
 }
 
 .inputButton {

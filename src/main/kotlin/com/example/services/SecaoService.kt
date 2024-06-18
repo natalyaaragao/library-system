@@ -36,11 +36,17 @@ class SecaoService(database: Database) {
         Secoes.selectAll().map{row -> row.toSecao()}
     }
 
-     suspend fun findSecao(idSecao: Int): Secao? = dbQuery {
+    suspend fun findSecao(idSecao: Int): Secao? = dbQuery {
         Secoes
             .select { Secoes.idSecao eq idSecao }
             .map { row -> row.toSecao() }
             .singleOrNull()
+    }
+
+    suspend fun findSecaoByBiblioteca(idBiblioteca: Int): List<Secao> = dbQuery {
+        Secoes
+            .select { Secoes.idBiblioteca eq idBiblioteca }
+            .map { row -> row.toSecao() }
     }
 
     suspend fun addNewSecao(secao: Secao): Secao = dbQuery {

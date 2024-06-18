@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import './Sidebar.css'
-import { IoHomeOutline, IoSearch, IoBookOutline, IoBookmarkOutline, IoSettingsOutline, IoLibraryOutline } from "react-icons/io5";
+import { IoHomeOutline, IoSearch, IoBookOutline, IoDocumentTextOutline, IoBookmarkOutline, IoSettingsOutline, IoLibraryOutline } from "react-icons/io5";
+import { MdShelves } from "react-icons/md";
 import { Link } from "react-router-dom";
 
 export const Sidebar = () => {
@@ -30,6 +31,18 @@ export const Sidebar = () => {
                     </Link>
                   </li>
                   <li className='menu-item'>
+                    <Link to="/secao">
+                      <MdShelves className='menu-icon'/>
+                      Seção
+                    </Link>
+                  </li>
+                  <li className='menu-item'>
+                    <Link to="/material">
+                      <IoDocumentTextOutline className='menu-icon'/>
+                      Material
+                    </Link>
+                  </li>
+                  <li className='menu-item'>
                     <Link to="/emprestimo">
                       <IoBookOutline className='menu-icon'/>
                       Empréstimo
@@ -41,7 +54,7 @@ export const Sidebar = () => {
               <p className='sidebar-subtitle'>titulo-2</p>
               <ul>
                 <li className='menu-item'>
-                  <a href="#">
+                  <a href="/lista">
                     <IoBookmarkOutline className='menu-icon'/>
                     Lista
                   </a>

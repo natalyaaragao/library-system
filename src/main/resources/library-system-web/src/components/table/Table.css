@@ -1,4 +1,8 @@
-table {
+.tablepag {
+    background-color: aqua;
+}
+
+/*table {
     background-color: rgb(200, 218, 230);
     width: 100%;
     margin-top: 5px;
@@ -31,4 +35,4 @@ tr:last-child td {
     width: 25%;
     padding: 2px;
     text-align: center;
-}
+}*/

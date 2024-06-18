@@ -20,12 +20,19 @@ fun Application.configureSecaoRouting(
             }
             call.respond(HttpStatusCode.OK, response)
         }
-        get("/secoes/{id}") {
+        get("/secoes/{idSecao}") {
             val id = call.parameters["idSecao"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")
             service.findSecao(id)?.let {
                     secao -> val response = secao.toSecaoResponse()
                 call.respond(HttpStatusCode.OK, response)
             } ?: call.respond(HttpStatusCode.NotFound)
+        } 
+        get("/secoes/biblioteca/{idBiblioteca}") {
+            val id = call.parameters["idBiblioteca"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")
+            val response = service.findSecaoByBiblioteca(id).map {
+                it.toSecaoResponse()
+            }
+            call.respond(HttpStatusCode.OK, response)
         }
         post("/secoes") {
             val secao = call.receive<SecaoRequest>().toSecao()
