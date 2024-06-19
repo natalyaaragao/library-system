@@ -17,4 +17,5 @@ fun Application.configureRouting(database: Database) {
     configureSecaoRouting(SecaoService(database))
     configureExemplarRouting(ItemMaterialService(database))
     configureMaterialDetalhadoRouting(MaterialDetalhadoService(database))
+    configureListaRouting(ListaService(database))
 }

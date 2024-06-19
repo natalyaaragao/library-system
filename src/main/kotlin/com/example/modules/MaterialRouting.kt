@@ -32,7 +32,7 @@ fun Application.configureMaterialRouting(
             val response = service.addNewMaterial(material).toMaterialResponse()
             call.respond(HttpStatusCode.Created, response)
         }
-        delete("/materiais/{id}") {
+        delete("/materiais/{idMaterial}") {
             val id = call.parameters["idMaterial"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")
             service.deleteMaterial(id)
             call.respond(HttpStatusCode.OK)
