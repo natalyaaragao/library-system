@@ -1,12 +1,12 @@
 import { React, useState, useEffect } from 'react';
 import axios from "../../axiosInstance";
-import Card from '../../components/card/Card'
 import '../../components/form/FormSelect.css'
 import '../../components/form/Form.css'
 import { IoSearchOutline } from "react-icons/io5";
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import CustomTable from '../../components/table/CustomTable'
+import Paper from '@mui/material/Paper';
 
 function createData(titulo, tipo, autor, assunto) {
     return {titulo, tipo, autor, assunto};
@@ -53,9 +53,11 @@ function ReadMaterial() {
     }
 
     return (
-        <div>
-            <CustomTable columns = {col} rows = {data} />
-        </div>
+        <Paper>
+            <div className='containerForm'>
+                <CustomTable columns = {col} rows = {data} />
+            </div>
+        </Paper>
     )
 }
 

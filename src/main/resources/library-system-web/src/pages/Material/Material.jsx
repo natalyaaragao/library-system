@@ -13,8 +13,8 @@ function Material() {
         <section className="containerBody">
             <div className="containerTop">
                 <h1> Material </h1>
-                    {toggle && <button onClick={toggleChecked} className="btn">Consultar Material</button>}
-                    {!toggle && <button onClick={toggleChecked} className="btn">Adicionar Material</button>}
+                    {toggle && <button onClick={toggleChecked} className="inputButton">Consultar Material</button>}
+                    {!toggle && <button onClick={toggleChecked} className="inputButton">Adicionar Material</button>}
             </div>
             {toggle && <AddMaterial /> }
             {!toggle && <ReadMaterial /> }

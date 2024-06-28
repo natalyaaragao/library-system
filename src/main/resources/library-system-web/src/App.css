@@ -3,7 +3,7 @@ body {
 }
 
 .containerApp {
-  position: relative;
+  position: fixed;
   display: flex;
-  align-items: center;
+  background-color: #F6F7FB;
 }

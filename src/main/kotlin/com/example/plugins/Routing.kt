@@ -8,7 +8,7 @@ import org.jetbrains.exposed.sql.Database
 import com.example.services.*
 import com.example.modules.*
 
-fun Application.configureRouting(database: Database) {
+fun Application.configureRouting(jwtService: JwtService, database: Database) {
     configureMaterialRouting(MaterialService(database))
     configureAutorRouting(AutorService(database))
     configureUsuarioRouting(UsuarioService(database))
@@ -18,4 +18,6 @@ fun Application.configureRouting(database: Database) {
     configureExemplarRouting(ItemMaterialService(database))
     configureMaterialDetalhadoRouting(MaterialDetalhadoService(database))
     configureListaRouting(ListaService(database))
+    //configureUserLoginRouting(UserLoginService(database))
+    configureAuthRouting(jwtService, UsuarioService(database))
 }

@@ -6,7 +6,8 @@ import '../../components/form/Form.css'
 import { IoSearchOutline } from "react-icons/io5";
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
-
+import Paper from '@mui/material/Paper';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 function AddSecao() {
     const [values, setValues] = useState( {
@@ -36,7 +37,7 @@ function AddSecao() {
             label: "Nome da seção",
             errorMessage: "Campo obrigatório!",
             required: true,
-            width: '75%'
+            width: '100%'
         },
         {
             id: 3,
@@ -46,7 +47,7 @@ function AddSecao() {
             errorMessage: "Campo obrigatório!",
             label: "Sigla",
             required: true,
-            width: '25%'
+            width: '100%'
         },
     ]
 
@@ -73,41 +74,46 @@ function AddSecao() {
     }
 
     return(
-        <div>
-            <form className="containerForm">
-                <TextField
-                    id="outlined-select-currency"
-                    select
-                    fullWidth
-                    label="Selecione a a biblioteca"
-                    defaultValue="0"
-                    onChange={handleInput}
-                    name = "idBiblioteca"
-                >
-                    {items.map((option) => (
-                        <MenuItem key={option.idBiblioteca} value={option.idBiblioteca}>
-                        {option.nome}
-                        </MenuItem>
-                    ))}
-                </TextField>
-            </form>
-            <form className="containerFormSearch" onSubmit={handleSubmit}>
-                {inputs.map(
-                    (input) => (
+        <Paper>
+            <form className="containerForm" onSubmit={handleSubmit}>
+                    <label>Selecione a biblioteca</label>
                     <TextField
-                        key = {input.id}
-                        label={input.label}
-                        id="outlined-size-normal"
-                        defaultValue=" "
+                        id="outlined-select-currency"
+                        select
+                        fullWidth
+                        defaultValue="0"
                         onChange={handleInput}
-                        name = {input.name}
-                        sx={{ m: 1, width: input.width }}
-                    />
-                    )
-                )}
-                <button className="inputButton"> Enviar </button>
+                        name = "idBiblioteca"
+                    >
+                        {items.map((option) => (
+                            <MenuItem key={option.idBiblioteca} value={option.idBiblioteca}>
+                            {option.nome}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                <div className='containerFormSearch'>
+                    {inputs.map(
+                        (input) => (
+                            <div className='formInput'>
+                                <label>{input.label}</label>
+                                <OutlinedInput
+                                    key = {input.id}
+                                    id="outlined-size-normal"
+                                    defaultValue=" "
+                                    onChange={handleInput}
+                                    name = {input.name}
+                                    sx={{ width: input.width }}
+                                />
+                            </div>
+                        )
+                    )}
+                </div>
+                
+                <div className='containerButton'>
+                    <button className="inputButton"> Enviar </button>
+                </div>    
             </form>
-        </div>
+        </Paper>
     )
 }
 

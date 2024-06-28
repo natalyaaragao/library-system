@@ -181,6 +181,8 @@ function AddBiblioteca() {
                         sx={{ m: 1, width: input.width }}
                         value = {values[input.name]}
                         name = {input.name}
+                        focused
+                        color="secondary"
                     />
                     )
                 )}
@@ -192,6 +194,8 @@ function AddBiblioteca() {
                     onChange={handleInput}
                     name = "areaConhecimento"
                     sx={{ m: 1, width: '48%' }}
+                    color="secondary"
+                    focused
                 >
                     {areaConhecimento.map((option) => (
                         <MenuItem key={option.id} value={option.name}>
@@ -207,6 +211,8 @@ function AddBiblioteca() {
                     onChange={handleInput}
                     name="recursos"
                     sx={{ m: 1, width: '48%' }}
+                    color="secondary"
+                    focused
                 >
                     {recursos.map((option) => (
                         <MenuItem key={option.id} value={option.name}>
@@ -226,6 +232,8 @@ function AddBiblioteca() {
                         sx={{ m: 1, width: input.width }}
                         value = {values[input.name]}
                         name = {input.name}
+                        color="secondary"
+                        focused
                     />
                     )
                 )}

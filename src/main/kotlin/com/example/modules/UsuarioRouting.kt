@@ -9,6 +9,7 @@ import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import java.util.*
 
 fun Application.configureUsuarioRouting(
     service: UsuarioService
@@ -20,9 +21,9 @@ fun Application.configureUsuarioRouting(
             }
             call.respond(HttpStatusCode.OK, response)
         }
-        get("/usuarios/{id}") {
-            val id = call.parameters["idUsuario"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")
-            service.findUsuario(id)?.let {
+        get("/usuarios/{email}") {
+            val email = call.parameters["email"]?.toString() ?: throw IllegalArgumentException("Invalid ID")
+            service.findUsuarioByEmail(email)?.let {
                 usuario -> val response = usuario.toUsuarioResponse()
                 call.respond(HttpStatusCode.OK, response)
             } ?: call.respond(HttpStatusCode.NotFound)
@@ -33,7 +34,7 @@ fun Application.configureUsuarioRouting(
             call.respond(HttpStatusCode.Created, response)
         }
         delete("/usuarios/{id}") {
-            val id = call.parameters["idUsuario"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")
+            val id = UUID.fromString(call.parameters["idUsuario"]) ?: throw IllegalArgumentException("Invalid ID")
             service.deleteUsuario(id)
             call.respond(HttpStatusCode.OK)
         }

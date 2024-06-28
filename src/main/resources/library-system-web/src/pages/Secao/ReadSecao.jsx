@@ -7,6 +7,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import TextField from '@mui/material/TextField';
 import CustomTable from '../../components/table/CustomTable'
 import MenuItem from '@mui/material/MenuItem';
+import Paper from '@mui/material/Paper';
 
 function createData(id, sigla, titulo) {
     return {id, sigla, titulo};
@@ -55,27 +56,30 @@ function ReadSecao() {
     const row = [];
 
     return(
-        <div className="containerCard">
-            <form className="containerFormSearch" onSubmit={handleSubmit}>
-                <TextField
-                    select
-                    fullWidth
-                    label="Selecione a biblioteca"
-                    defaultValue="0"
-                    onChange={e => setBiblioteca(e.target.value)}
-                    name = "idBiblioteca"
-                >
-                    {items.map((option) => (
-                        <MenuItem key={option.idBiblioteca} value={option.idBiblioteca}>
-                        {option.nome}
-                        </MenuItem>
-                    ))}
-                </TextField>
-                <button className="inputButton"> Buscar </button>
+        <Paper>
+            <form className="containerForm" onSubmit={handleSubmit}>
+                <label>Selecione a biblioteca</label>
+                <div className='containerFormSearch'>
+                    <TextField
+                        select
+                        fullWidth
+                        defaultValue="0"
+                        onChange={e => setBiblioteca(e.target.value)}
+                        name = "idBiblioteca"
+                    >
+                        {items.map((option) => (
+                            <MenuItem key={option.idBiblioteca} value={option.idBiblioteca}>
+                            {option.nome}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+                    <button className="inputButton"> Buscar </button>
+                </div>
+                
             </form>
             { values.length > 0 ? handleInput() : <></> }
             { values.length > 0 ? <CustomTable columns = {col} rows = {row} /> : <></> }
-        </div>
+        </Paper>
     )
 }
 

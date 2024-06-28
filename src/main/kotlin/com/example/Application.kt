@@ -10,6 +10,13 @@ import io.ktor.server.plugins.cors.routing.*
 import io.ktor.server.http.content.*
 import io.ktor.http.*
 import org.h2.tools.Server
+import com.example.services.JwtService
+import com.example.services.UserLoginService
+import io.ktor.server.auth.*
+import io.ktor.server.auth.jwt.*
+import com.auth0.jwt.JWT
+import com.auth0.jwt.JWTVerifier
+import com.auth0.jwt.algorithms.Algorithm
 
 fun main() {
     /*embeddedServer(Netty, port = 4173, host = "0.0.0.0") {
@@ -45,5 +52,8 @@ fun Application.module() {
     val database = Database.connect(jdbcURL, driverClassName)
     val server: Server = Server.createWebServer("-web", "-webAllowOthers", "-webPort", "8082")
     server.start()
-    configureRouting(database)
+
+    val jwtService = JwtService(this)
+    configureSecurity()
+    configureRouting(jwtService, database)
 }

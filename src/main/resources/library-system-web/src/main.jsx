@@ -4,6 +4,7 @@ import App from './App.jsx'
 import './index.css'
 import 'vite/modulepreload-polyfill'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import AuthProvider from './pages/Login/AuthContext.jsx';
 import Biblioteca from './pages/Biblioteca/Biblioteca.jsx'
 import Emprestimo from './pages/Emprestimo/Emprestimo.jsx'
 import Busca from './pages/Busca/Busca.jsx'
@@ -12,6 +13,7 @@ import Login from './pages/Login/Login.jsx'
 import Secao from './pages/Secao/Secao.jsx'
 import Material from './pages/Material/Material.jsx'
 import Lista from './pages/Lista/Lista.jsx'
+import Cadastro from './pages/Login/Cadastro.jsx'
 
 const router = createBrowserRouter([
   {
@@ -51,12 +53,18 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />
-  } 
+  },
+  {
+    path: "/cadastro",
+    element: <Cadastro />
+  }  
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <AuthProvider>
+      <RouterProvider router={router}/>
+    </AuthProvider>
   </React.StrictMode>
 )
 

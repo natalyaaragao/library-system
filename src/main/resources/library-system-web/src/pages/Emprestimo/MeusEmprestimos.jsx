@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from "react"; 
 import '../../components/Body.css';
 import CustomTable from '../../components/table/CustomTable'
+import { useAuth } from "../Login/AuthContext.jsx";
+import { Navigate } from "react-router-dom"; 
 
 function createData(id, titulo, devolucao, status) {
     let labelStatus = "";
@@ -13,6 +15,11 @@ function createData(id, titulo, devolucao, status) {
 }
 
 function MeusEmprestimos() {
+    const { token } = useAuth()
+    if (!token) {
+        return <h1>Não está logado</h1>
+    }
+
     const col = [
         { id: 'id', label: 'ID', minWidth: 50 },
         { id: 'titulo', label: 'Título', minWidth: 270 },        

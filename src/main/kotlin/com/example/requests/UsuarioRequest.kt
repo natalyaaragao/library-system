@@ -2,35 +2,24 @@ package com.example.requests
 
 import kotlinx.serialization.Serializable
 import com.example.models.Usuario
+import java.util.UUID
 
 @Serializable
 class UsuarioRequest(
     val nome: String,
-    val cpf: String,
-    val nusp: Int,
-    val telefone: String,
     val email: String,
-    val rua: String,
-	val numero: Int,
-	val bairro: String,
-	val cidade: String,
-	val estado: String,
-	val cep: Int
+    val senha: String,
+    val role: String
 )
 
-fun UsuarioRequest.toUsuario(idUsuario: Int = 1): Usuario {
+fun UsuarioRequest.toUsuario(
+    idUsuario: UUID = UUID.randomUUID()
+): Usuario {
     return Usuario(
         idUsuario = idUsuario,
         nome = nome,
-        cpf = cpf,
-        nusp = nusp,
-        telefone = telefone,
         email = email,
-        rua = rua,
-		numero = numero,
-		bairro = bairro,
-		cidade = cidade,
-		estado = estado,
-		cep = cep
+        senha = senha,
+        role = "USER"
     )
 }
