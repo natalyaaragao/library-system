@@ -20,12 +20,19 @@ fun Application.configureMaterialRouting(
             }
             call.respond(HttpStatusCode.OK, response)
         }
-        get("/materiais/{id}") {
+        get("/materiais/{idMaterial}") {
             val id = call.parameters["idMaterial"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")
             service.findMaterial(id)?.let {
                     material -> val response = material.toMaterialResponse()
                 call.respond(HttpStatusCode.OK, response)
             } ?: call.respond(HttpStatusCode.NotFound)
+        }
+        get("/material/{titulo}") {
+            val titulo = call.parameters["titulo"]?.toString() ?: throw IllegalArgumentException("Invalid Titulo")
+            val response = service.findMaterialByTitulo(titulo).map {
+                it.toMaterialResponse()
+            }
+            call.respond(HttpStatusCode.OK, response)
         }
         post("/materiais") {
             val material = call.receive<MaterialRequest>().toMaterial()

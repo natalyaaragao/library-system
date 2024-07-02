@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 import CustomTable from '../../components/table/CustomTable'
 import MenuItem from '@mui/material/MenuItem';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
 function createData(id, sigla, titulo) {
     return {id, sigla, titulo};
@@ -15,7 +16,7 @@ function createData(id, sigla, titulo) {
 
 function ReadSecao() {
     const [values, setValues] = useState([]);
-
+    const [errorMessage, setErrorMessage] = useState("")
     const [biblioteca, setBiblioteca] = useState();
     function handleSubmit(e) {
         e.preventDefault();
@@ -25,10 +26,8 @@ function ReadSecao() {
         .then((data) => {
             console.log(data);
             setValues(data);
+            handleInput()
         })
-        .then(
-            
-        )
         .catch(err => console.log(err));
     }
 
@@ -57,28 +56,27 @@ function ReadSecao() {
 
     return(
         <Paper>
-            <form className="containerForm" onSubmit={handleSubmit}>
-                <label>Selecione a biblioteca</label>
+            <form className="containerForm">
                 <div className='containerFormSearch'>
-                    <TextField
-                        select
-                        fullWidth
-                        defaultValue="0"
-                        onChange={e => setBiblioteca(e.target.value)}
-                        name = "idBiblioteca"
-                    >
-                        {items.map((option) => (
-                            <MenuItem key={option.idBiblioteca} value={option.idBiblioteca}>
-                            {option.nome}
-                            </MenuItem>
-                        ))}
-                    </TextField>
-                    <button className="inputButton"> Buscar </button>
-                </div>
-                
+                    <div className="formInput" style={{width: '100%'}}>
+                        <div className="labelForm"> Selecione a biblioteca </div>
+                        <select name="idBiblioteca" className='inputForm' onChange={e => setBiblioteca(e.target.value)}>
+                            {items.map((item) => (
+                                <option key={item.idBiblioteca} value={item.idBiblioteca}>
+                                    {item.nome}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <Button onClick={handleSubmit} size="large" variant="contained" sx={{textTransform: 'none', marginTop: '26px'}} startIcon={<IoSearchOutline />}>
+                        Buscar
+                    </Button>
+                </div>                
             </form>
             { values.length > 0 ? handleInput() : <></> }
-            { values.length > 0 ? <CustomTable columns = {col} rows = {row} /> : <></> }
+            { values.length > 0 ? 
+            <div className="containerForm" style={{marginTop: "-100px"}}><CustomTable columns = {col} rows = {row} /></div>
+            : <></> }
         </Paper>
     )
 }

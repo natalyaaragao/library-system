@@ -4,10 +4,9 @@ import com.example.responses.EmprestimoResponse
 
 data class Emprestimo(
     val idEmprestimo: Int,
-    val idUsuario: Int,
+    val idUsuario: String,
     val statusUsuario: Int,
-    val qtdItens: Int,
-    val prazo: String
+    val qtdItens: Int
 )
 
 fun Emprestimo.toEmprestimoResponse(): EmprestimoResponse {
@@ -15,7 +14,6 @@ fun Emprestimo.toEmprestimoResponse(): EmprestimoResponse {
         idEmprestimo = idEmprestimo,
         idUsuario = idUsuario,
         statusUsuario = statusUsuario,
-        qtdItens = qtdItens,
-        prazo = prazo
+        qtdItens = qtdItens
     )
 }

@@ -14,6 +14,9 @@ import Secao from './pages/Secao/Secao.jsx'
 import Material from './pages/Material/Material.jsx'
 import Lista from './pages/Lista/Lista.jsx'
 import Cadastro from './pages/Login/Cadastro.jsx'
+import ResultadoBusca from './pages/Busca/ResultadoBusca.jsx'
+import ResultadoMaterial from './pages/Material/ResultadoMaterial.jsx'
+import Exemplar from './pages/Exemplar/Exemplar.jsx'
 
 const router = createBrowserRouter([
   {
@@ -33,8 +36,8 @@ const router = createBrowserRouter([
         element: <Busca />
       },
       {
-        path: "/buscaResultado",
-        element: <ReadBusca />
+        path: "/resultadoBusca",
+        element: <ResultadoBusca />
       },
       {
         path: "/secao",
@@ -45,9 +48,17 @@ const router = createBrowserRouter([
         element: <Material />
       },
       {
+        path: "/resultadoMaterial/:id",
+        element: <ResultadoMaterial />
+      },
+      {
         path: "/lista",
         element: <Lista />
       },
+      {
+        path: "/exemplar",
+        element: <Exemplar />
+      }
     ]
   },
   {

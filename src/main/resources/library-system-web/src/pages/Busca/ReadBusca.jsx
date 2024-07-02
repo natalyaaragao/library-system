@@ -3,10 +3,11 @@ import '../../components/form/Form.css'
 import '../../components/table/Table.css'
 import TextField from '@mui/material/TextField';
 import CustomTable from '../../components/table/CustomTable'
+import { Paper } from '@mui/material';
 
 function createData(titulo, status, emprestimo, localizacao) {
     return {titulo, status, emprestimo, localizacao};
-  }
+}
 
 function ReadBusca() {
     const data = {
@@ -37,7 +38,7 @@ function ReadBusca() {
 
     return (
         <section className="containerBody">
-            <div className="containerCard">
+            <Paper>
                 <h1>{data.nome}</h1>
                 <div>
                     <TextField
@@ -105,10 +106,77 @@ function ReadBusca() {
                     />
                 </div>
                 <CustomTable columns = {col} rows = {row} />
-            </div>
+            </Paper>
         </section>
         
     )
 }
 
 export default ReadBusca
+
+/*<div className='containerFormSearch'>
+                <TextField
+                  id="outlined-select-currency"
+                  select
+                  label="Idioma"
+                  defaultValue="0"
+                  onChange={(event) => {
+                    setIdioma(event.target.value);
+                  }}
+                  sx={{ width: '15%' }}
+                >
+                  {idiomas.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.name}
+                    </MenuItem>
+                  ))}
+                </TextField>
+                <TextField
+                  id="outlined-select-currency"
+                  select
+                  label="Campo para busca"
+                  defaultValue="0"
+                  onChange={(event) => {
+                    setCampoBusca(event.target.value);
+                  }}
+                  sx={{ width: '20%' }}
+                >
+                  {camposBusca.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.name}
+                    </MenuItem>
+                  ))}
+                </TextField>
+                <TextField
+                  id="outlined-select-currency"
+                  select
+                  label="Tipo de material"
+                  defaultValue="0"
+                  onChange={(event) => {
+                    setTipoMaterial(event.target.value);
+                  }}
+                  sx={{ width: '20%' }}
+                >
+                  {tiposMaterial.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.name}
+                    </MenuItem>
+                  ))}
+                </TextField>
+                <TextField
+                  id="outlined-select-currency"
+                  select
+                  label="Base para busca"
+                  defaultValue="0"
+                  onChange={(event) => {
+                    setBase(event.target.value);
+                  }}
+                  sx={{ width: '45%' }}
+                >
+                  {bases.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.name}
+                    </MenuItem>
+                  ))}
+                </TextField>
+            </div> */

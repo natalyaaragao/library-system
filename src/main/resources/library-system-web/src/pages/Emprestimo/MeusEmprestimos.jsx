@@ -3,6 +3,7 @@ import '../../components/Body.css';
 import CustomTable from '../../components/table/CustomTable'
 import { useAuth } from "../Login/AuthContext.jsx";
 import { Navigate } from "react-router-dom"; 
+import { Paper } from "@mui/material";
 
 function createData(id, titulo, devolucao, status) {
     let labelStatus = "";
@@ -15,10 +16,10 @@ function createData(id, titulo, devolucao, status) {
 }
 
 function MeusEmprestimos() {
-    const { token } = useAuth()
+    /*const { token } = useAuth()
     if (!token) {
         return <h1>Não está logado</h1>
-    }
+    }*/
 
     const col = [
         { id: 'id', label: 'ID', minWidth: 50 },
@@ -38,13 +39,9 @@ function MeusEmprestimos() {
     ];
 
     return (
-        <section className="containerBody">
-            <div className="containerTop">
-                <h1>Meus empréstimos</h1>
-            </div>
-            
-            <CustomTable columns = {col} rows = {data} />
-        </section>
+        <Paper>
+            <CustomTable columns = {col} rows = {data} /> 
+        </Paper>
     )
 }
 

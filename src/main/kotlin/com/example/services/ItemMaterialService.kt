@@ -9,7 +9,7 @@ import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 
 class ItemMaterialService(database: Database) {
     object ItensMateriais : Table()  {
-        val idItemMaterial = integer("idSecao").autoIncrement()
+        val idItemMaterial = integer("idItemMaterial").autoIncrement()
         val localizacaoItem = varchar("localizacaoItem", 512)
         val idMaterial = integer("idMaterial")
         val statusItem = integer("statusItem")
@@ -45,11 +45,17 @@ class ItemMaterialService(database: Database) {
         ItensMateriais.selectAll().map{row -> row.toItemMaterial()}
     }
 
-     suspend fun findItemMaterial(idItemMaterial: Int): ItemMaterial? = dbQuery {
+    suspend fun findItemMaterialById(idItemMaterial: Int): ItemMaterial? = dbQuery {
         ItensMateriais
             .select { ItensMateriais.idItemMaterial eq idItemMaterial }
             .map { row -> row.toItemMaterial() }
             .singleOrNull()
+    }
+
+    suspend fun findItemMaterial(idMaterial: Int): List<ItemMaterial> = dbQuery {
+        ItensMateriais
+            .select { ItensMateriais.idMaterial eq idMaterial }
+            .map { row -> row.toItemMaterial() }
     }
 
     suspend fun addNewItemMaterial(itemMaterial: ItemMaterial): ItemMaterial = dbQuery {

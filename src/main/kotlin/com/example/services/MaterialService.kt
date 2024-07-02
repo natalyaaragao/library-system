@@ -60,6 +60,12 @@ class MaterialService(database: Database) {
             .singleOrNull()
     }
 
+    suspend fun findMaterialByTitulo(titulo: String): List<Material> = dbQuery {
+        Materiais
+            .select { Materiais.titulo.lowerCase() like "%$titulo%" }
+            .map{row -> row.toMaterial()}
+    }
+
     suspend fun addNewMaterial(material: Material): Material = dbQuery {
         Materiais.insert {
             it[idSecao] = material.idSecao

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import '../../components/form/Form.css'
 import axios from "../../axiosInstance";
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
+import FormInput from '../../components/form/FormInput';
+import Button from '@mui/material/Button';
 
 function AddBiblioteca() {
     const [values, setValues] = useState( {
@@ -29,7 +29,7 @@ function AddBiblioteca() {
             type: "text",
             placeholder: "Nome",
             label: "Nome",
-            width: '48%',
+            width: '49%',
             required: true
         },
         {
@@ -38,7 +38,7 @@ function AddBiblioteca() {
             type: "text",
             placeholder: "Horário de Funcionamento",
             label: "Horário de Funcionamento",
-            width: '48%',
+            width: '49%',
             required: true
         },
         {
@@ -46,9 +46,9 @@ function AddBiblioteca() {
             name: "telefone",
             type: "text",
             placeholder: "Telefone",
-            errorMessage: "Telefone inválido!",
+            //errorMessage: "Telefone inválido!",
             label: "Telefone",
-            width: '48%',
+            width: '49%',
             required: true
         },
         {
@@ -56,9 +56,9 @@ function AddBiblioteca() {
             name: "email",
             type: "text",
             placeholder: "Email",
-            errorMessage: "Email inválido!",
+            //errorMessage: "Email inválido!",
             label: "Email",
-            width: '48%',
+            width: '49%',
             required: true
         },
         {
@@ -66,9 +66,9 @@ function AddBiblioteca() {
             name: "site",
             type: "text",
             placeholder: "Site",
-            errorMessage: "Site inválido!",
+            //errorMessage: "Site inválido!",
             label: "Site",
-            width: '48%',
+            width: '49%',
             required: true
         },
         {
@@ -77,7 +77,7 @@ function AddBiblioteca() {
             type: "text",
             placeholder: "Assuntos",
             label: "Assuntos",
-            width: '48%',
+            width: '49%',
             required: false
         }
     ];
@@ -89,17 +89,7 @@ function AddBiblioteca() {
             type: "text",
             placeholder: "Rua",
             label: "Rua",
-            width: '68%',
-            required: true
-        },
-        {
-            id: 2,
-            name: "cep",
-            type: "text",
-            placeholder: "Cep",
-            errorMessage: "Cep inválido!",
-            label: "Cep",
-            width: '17.5%',
+            width: '90%',
             required: true
         },
         {
@@ -108,17 +98,18 @@ function AddBiblioteca() {
             type: "number",
             placeholder: "Número",
             label: "Número",
-            width: '8%',
+            width: '9%',
             required: true
         },
+        
         {
             id: 4,
             name: "bairro",
             type: "text",
             placeholder: "Bairro",
-            errorMessage: "Bairro inválido!",
+            //errorMessage: "Bairro inválido!",
             label: "Bairro",
-            width: '33.6%',
+            width: '30%',
             required: true
         },
         {
@@ -126,19 +117,19 @@ function AddBiblioteca() {
             name: "cidade",
             type: "text",
             placeholder: "Cidade",
-            errorMessage: "Cidade inválida!",
+            //errorMessage: "Cidade inválida!",
             label: "Cidade",
             width: '30%',
             required: true
         },
         {
-            id: 6,
-            name: "estado",
+            id: 2,
+            name: "cep",
             type: "text",
-            placeholder: "Estado",
-            errorMessage: "Estado inválido!",
-            label: "Estado",
-            width: '30%',
+            placeholder: "Cep",
+            //errorMessage: "Cep inválido!",
+            label: "Cep",
+            width: '10%',
             required: true
         }
     ];
@@ -164,80 +155,71 @@ function AddBiblioteca() {
 
     const handleInput = (e) => {
         setValues({...values, [e.target.name]: e.target.value})
+        console.log(values)
     }
 
     return (
         <div>
-            <form className="containerForm" onSubmit={handleSubmit}>
-            
+            <form className="containerForm">
                 {inputs.map(
                     (input) => (
-                    <TextField
+                    <FormInput
                         key = {input.id}
-                        label={input.label}
-                        id="outlined-size-normal"
-                        defaultValue=" "
-                        onChange={handleInput}
-                        sx={{ m: 1, width: input.width }}
+                        label = {input.label}
+                        onChange = {handleInput}
+                        style = {{ m: 1, width: input.width }}
                         value = {values[input.name]}
                         name = {input.name}
-                        focused
-                        color="secondary"
+                        {...input}
                     />
                     )
                 )}
-                <TextField
-                    select
-                    fullWidth
-                    label="Área do conhecimento"
-                    defaultValue=""
-                    onChange={handleInput}
-                    name = "areaConhecimento"
-                    sx={{ m: 1, width: '48%' }}
-                    color="secondary"
-                    focused
-                >
-                    {areaConhecimento.map((option) => (
-                        <MenuItem key={option.id} value={option.name}>
-                            {option.name}
-                        </MenuItem>
-                    ))}
-                </TextField>
-                <TextField
-                    select
-                    fullWidth
-                    label="Recursos"
-                    defaultValue=""
-                    onChange={handleInput}
-                    name="recursos"
-                    sx={{ m: 1, width: '48%' }}
-                    color="secondary"
-                    focused
-                >
-                    {recursos.map((option) => (
-                        <MenuItem key={option.id} value={option.name}>
-                            {option.name}
-                        </MenuItem>
-                    ))}
-                </TextField>
-                <p>Endereço</p>
+                <div className="formInput" style={{width: '49%'}}>
+                    <div className="labelForm"> Área do conhecimento </div>
+                    <select name="areaConhecimento" className='inputForm' onChange={handleInput}>
+                        {areaConhecimento.map((item) => (
+                            <option key={item.id} value={item.name}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className="formInput" style={{width: '49%'}}>
+                    <div className="labelForm"> Área do conhecimento </div>
+                    <select name="recursos" className='inputForm' onChange={handleInput}>
+                        {recursos.map((item) => (
+                            <option key={item.id} value={item.name}>
+                                {item.name}
+                            </option>
+                        ))}
+                    </select>
+                </div>
                 {inputsEndereco.map(
                     (input) => (
-                    <TextField
+                    <FormInput
                         key = {input.id}
                         label={input.label}
-                        id="outlined-size-normal"
-                        defaultValue=" "
                         onChange={handleInput}
-                        sx={{ m: 1, width: input.width }}
+                        style={{ width: input.width }}
                         value = {values[input.name]}
                         name = {input.name}
-                        color="secondary"
-                        focused
+                        {...input}
                     />
                     )
                 )}
-                <button className="inputButton">Enviar</button>
+                <div className="formInput" style={{width: '27%'}}>
+                    <div className="labelForm"> Estado </div>
+                    <select name="estados" className='inputForm'>
+                        {estados.map((item) => (
+                            <option key={item.ID} value={item.Nome}>
+                                {item.Nome}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className='containerButton'>
+                    <Button onClick={handleSubmit} variant="contained" size="large" sx={{marginTop: "25px", textTransform: 'none'}}>Enviar</Button>
+                </div>
             </form>
             
         </div>
@@ -246,3 +228,140 @@ function AddBiblioteca() {
 
 export default AddBiblioteca;
 
+const estados = [
+    {
+        "ID": "1",
+        "Sigla": "AC",
+        "Nome": "Acre"
+    },
+    {
+        "ID": "2",
+        "Sigla": "AL",
+        "Nome": "Alagoas"
+    },
+    {
+        "ID": "3",
+        "Sigla": "AM",
+        "Nome": "Amazonas"
+    },
+    {
+        "ID": "4",
+        "Sigla": "AP",
+        "Nome": "Amapá"
+    },
+    {
+        "ID": "5",
+        "Sigla": "BA",
+        "Nome": "Bahia"
+    },
+    {
+        "ID": "6",
+        "Sigla": "CE",
+        "Nome": "Ceará"
+    },
+    {
+        "ID": "7",
+        "Sigla": "DF",
+        "Nome": "Distrito Federal"
+    },
+    {
+        "ID": "8",
+        "Sigla": "ES",
+        "Nome": "Espírito Santo"
+    },
+    {
+        "ID": "9",
+        "Sigla": "GO",
+        "Nome": "Goiás"
+    },
+    {
+        "ID": "10",
+        "Sigla": "MA",
+        "Nome": "Maranhão"
+    },
+    {
+        "ID": "11",
+        "Sigla": "MG",
+        "Nome": "Minas Gerais"
+    },
+    {
+        "ID": "12",
+        "Sigla": "MS",
+        "Nome": "Mato Grosso do Sul"
+    },
+    {
+        "ID": "13",
+        "Sigla": "MT",
+        "Nome": "Mato Grosso"
+    },
+    {
+        "ID": "14",
+        "Sigla": "PA",
+        "Nome": "Pará"
+    },
+    {
+        "ID": "15",
+        "Sigla": "PB",
+        "Nome": "Paraíba"
+    },
+    {
+        "ID": "16",
+        "Sigla": "PE",
+        "Nome": "Pernambuco"
+    },
+    {
+        "ID": "17",
+        "Sigla": "PI",
+        "Nome": "Piauí"
+    },
+    {
+        "ID": "18",
+        "Sigla": "PR",
+        "Nome": "Paraná"
+    },
+    {
+        "ID": "19",
+        "Sigla": "RJ",
+        "Nome": "Rio de Janeiro"
+    },
+    {
+        "ID": "20",
+        "Sigla": "RN",
+        "Nome": "Rio Grande do Norte"
+    },
+    {
+        "ID": "21",
+        "Sigla": "RO",
+        "Nome": "Rondônia"
+    },
+    {
+        "ID": "22",
+        "Sigla": "RR",
+        "Nome": "Roraima"
+    },
+    {
+        "ID": "23",
+        "Sigla": "RS",
+        "Nome": "Rio Grande do Sul"
+    },
+    {
+        "ID": "24",
+        "Sigla": "SC",
+        "Nome": "Santa Catarina"
+    },
+    {
+        "ID": "25",
+        "Sigla": "SE",
+        "Nome": "Sergipe"
+    },
+    {
+        "ID": "26",
+        "Sigla": "SP",
+        "Nome": "São Paulo"
+    },
+    {
+        "ID": "27",
+        "Sigla": "TO",
+        "Nome": "Tocantins"
+    }
+];

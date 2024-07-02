@@ -14,25 +14,7 @@
 .containerFormSearch {
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
     gap: 8px;
-    width: 100%;
-}
-
-.formInput {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-label {
-    margin-bottom: 2px;
-    text-transform: capitalize;
-}
-
-.containerButton {
-    display: flex;
-    justify-content: flex-end;
     width: 100%;
 }
 

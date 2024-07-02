@@ -3,6 +3,7 @@ import React from 'react'
 import AddBiblioteca from './AddBiblioteca'
 import { useState } from "react";
 import ReadBiblioteca from './ReadBiblioteca';
+import Button from '@mui/material/Button';
 
 function Biblioteca() {
   const [toggle, setToggle] = useState(true);
@@ -13,8 +14,15 @@ function Biblioteca() {
       <section className="containerBody">
           <div className="containerTop">
               <h1> Biblioteca </h1>
-                  {toggle && <button onClick={toggleChecked} className="btn">Consultar biblioteca</button>}
-                  {!toggle && <button onClick={toggleChecked} className="btn">Adicionar biblioteca</button>}
+                    {toggle &&
+                        <Button onClick={toggleChecked} size="large" variant="contained" sx={{textTransform: 'none'}}>
+                            Consultar biblioteca
+                        </Button> 
+                    }
+                    {!toggle && 
+                        <Button onClick={toggleChecked} size="large" variant="contained" sx={{textTransform: 'none'}}>
+                            Adicionar biblioteca
+                        </Button>}
           </div>
           {toggle && <AddBiblioteca /> }
           {!toggle && <ReadBiblioteca /> }

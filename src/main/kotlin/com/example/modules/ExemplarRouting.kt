@@ -20,12 +20,19 @@ fun Application.configureExemplarRouting(
             }
             call.respond(HttpStatusCode.OK, response)
         }
-        get("/exemplares/{id}") {
+        get("/exemplares/{idItemMaterial}") {
             val id = call.parameters["idItemMaterial"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")
-            service.findItemMaterial(id)?.let {
+            service.findItemMaterialById(id)?.let {
                     exemplar -> val response = exemplar.toItemMaterialResponse()
                 call.respond(HttpStatusCode.OK, response)
             } ?: call.respond(HttpStatusCode.NotFound)
+        }
+        get("/exemplares/material/{idMaterial}") {
+            val id = call.parameters["idMaterial"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")
+            val response = service.findItemMaterial(id).map {
+                it.toItemMaterialResponse()
+            }
+            call.respond(HttpStatusCode.OK, response)
         }
         post("/exemplares") {
             val exemplar = call.receive<ItemMaterialRequest>().toItemMaterial()

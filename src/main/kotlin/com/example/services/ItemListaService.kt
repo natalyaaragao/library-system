@@ -35,11 +35,17 @@ class ItemListaService(database: Database) {
         ItemListas.selectAll().map{row -> row.toItemLista()}
     }
 
-     suspend fun findItemLista(idItemLista: Int): ItemLista? = dbQuery {
+    suspend fun findItemListaById(idItemLista: Int): ItemLista? = dbQuery {
         ItemListas
             .select { ItemListas.idItemLista eq idItemLista }
             .map { row -> row.toItemLista() }
             .singleOrNull()
+    }
+
+    suspend fun findItemLista(idLista: Int): List<ItemLista> = dbQuery {
+        ItemListas
+            .select { ItemListas.idLista eq idLista }
+            .map { row -> row.toItemLista() }
     }
 
     suspend fun addNewItemLista(itemLista: ItemLista): ItemLista = dbQuery {

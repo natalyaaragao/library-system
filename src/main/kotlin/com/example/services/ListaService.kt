@@ -10,7 +10,7 @@ import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 class ListaService(database: Database) {
     private object Listas : Table()  {
         val idLista = integer("idLista").autoIncrement()
-        val idUsuario = integer("idUsuario")
+        val email = varchar("email", 128)
         val nomeLista = varchar("nomeLista", 1024)
         val tipoLista = varchar("tipoLista", 1024)
         
@@ -28,7 +28,7 @@ class ListaService(database: Database) {
 
     private fun ResultRow.toLista() = Lista(
         idLista = this[Listas.idLista],
-        idUsuario = this[Listas.idUsuario],
+        email = this[Listas.email],
         nomeLista = this[Listas.nomeLista],
         tipoLista = this[Listas.tipoLista]
     )
@@ -37,32 +37,38 @@ class ListaService(database: Database) {
         Listas.selectAll().map{row -> row.toLista()}
     }
 
-    suspend fun findLista(idLista: Int): Lista? = dbQuery {
+    suspend fun findListaById(idLista: Int): Lista? = dbQuery {
         Listas
             .select { Listas.idLista eq idLista }
             .map { row -> row.toLista() }
             .singleOrNull()
     }
 
+    suspend fun findListaByEmail(email: String): List<Lista> = dbQuery {
+        Listas
+            .select { Listas.email eq email }
+            .map{row -> row.toLista()}
+    }
+
     suspend fun addNewLista(lista: Lista): Lista = dbQuery {
         Listas.insert {
-            it[idUsuario] = lista.idUsuario
+            it[email] = lista.email
             it[nomeLista] = lista.nomeLista
             it[tipoLista] = lista.tipoLista
         }.let {
             Lista(
                 idLista = it[Listas.idLista],
-                idUsuario = it[Listas.idUsuario],
+                email = it[Listas.email],
                 nomeLista = it[Listas.nomeLista],
                 tipoLista = it[Listas.tipoLista]
             )
         }
     }
 
-    suspend fun editLista(idLista: Int, idUsuario: Int, nomeLista: String, tipoLista: String): Boolean =
+    suspend fun editLista(idLista: Int, email: String, nomeLista: String, tipoLista: String): Boolean =
         dbQuery {
             Listas.update({ Listas.idLista eq idLista }) {
-                it[Listas.idUsuario] = idUsuario
+                it[Listas.email] = email
                 it[Listas.nomeLista] = nomeLista
                 it[Listas.tipoLista] = tipoLista
             } > 0

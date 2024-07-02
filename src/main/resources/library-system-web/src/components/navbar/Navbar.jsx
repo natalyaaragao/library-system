@@ -2,9 +2,10 @@ import React from 'react'
 import { useAuth } from '../../pages/Login/AuthContext'
 import { useNavigate } from "react-router-dom";
 import './Navbar.css'
+import Button from '@mui/material/Button';
 
 export default function Navbar() {
-    const { setToken } = useAuth();
+    const { setToken, user } = useAuth();
     const navigate = useNavigate();
 
     const handleLogout = (e) => {
@@ -14,8 +15,8 @@ export default function Navbar() {
 
     return (
         <div className='containerNavbar'>
-            Navbar
-            <button onClick={handleLogout}>Sair</button>
+            <p style={{marginRight: "15px"}}>{user}</p>
+            <Button onClick={handleLogout} variant="contained">Sair</Button>
         </div>
     )
 }

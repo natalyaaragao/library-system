@@ -5,8 +5,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 class EmprestimoResponse(
     val idEmprestimo: Int,
-    val idUsuario: Int,
+    val idUsuario: String,
     val statusUsuario: Int,
-    val qtdItens: Int,
-    val prazo: String
+    val qtdItens: Int
 )

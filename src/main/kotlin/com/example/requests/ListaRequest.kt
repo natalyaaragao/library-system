@@ -5,7 +5,7 @@ import com.example.models.Lista
 
 @Serializable
 class ListaRequest(
-    val idUsuario: Int,
+    val email: String,
     val nomeLista: String,
     val tipoLista: String
 )
@@ -13,7 +13,7 @@ class ListaRequest(
 fun ListaRequest.toLista(idLista: Int = 1): Lista {
     return Lista(
         idLista = idLista,
-        idUsuario = idUsuario,
+        email = email,
         nomeLista = nomeLista,
         tipoLista = tipoLista
     )

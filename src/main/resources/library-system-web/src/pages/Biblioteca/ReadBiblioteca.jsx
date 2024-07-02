@@ -13,9 +13,9 @@ function FilterBiblioteca({filterText, cidade, area, items}) {
 
     items.forEach((i) => {
         if(cidade === "Todas" && area === "Todas") aux.push(i);
-        else if ( cidade === i.cidade ) aux.push(i);
         else if ( (cidade === "Todas" && area === i.areas)) aux.push(i);
         else if (cidade === i.cidade && area === i.areas) aux.push(i); 
+        else if ( cidade === i.cidade ) aux.push(i);
     });
 
     const newItems = [];
@@ -79,7 +79,7 @@ function ReadBiblioteca() {
     ]
           
     return (
-        <div className="containerCard">
+        <div className="containerCard" style={{marginBottom: "100px"}}>
             <form className='containerFormSearch'>
                 <TextField
                     id="outlined-basic"

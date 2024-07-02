@@ -21,6 +21,20 @@ fun Application.configureListaRouting(
             }
             call.respond(HttpStatusCode.OK, response)
         }
+        get("/lista/{idLista}") {
+            val id = call.parameters["idLista"]?.toInt() ?: throw IllegalArgumentException("Invalid ID")
+            service.findListaById(id)?.let {
+                    lista -> val response = lista.toListaResponse()
+                call.respond(HttpStatusCode.OK, response)
+            } ?: call.respond(HttpStatusCode.NotFound)
+        }
+        get("/listas/{email}") {
+            val email = call.parameters["email"]?.toString() ?: throw IllegalArgumentException("Invalid Email")
+            val response = service.findListaByEmail(email).map {
+                it.toListaResponse()
+            }
+            call.respond(HttpStatusCode.OK, response)
+        }
         post("/listas") {
             val lista = call.receive<ListaRequest>().toLista()
             val response = service.addNewLista(lista).toListaResponse()

@@ -18,6 +18,9 @@ fun Application.configureRouting(jwtService: JwtService, database: Database) {
     configureExemplarRouting(ItemMaterialService(database))
     configureMaterialDetalhadoRouting(MaterialDetalhadoService(database))
     configureListaRouting(ListaService(database))
+    configureItemListaRouting(ItemListaService(database))
+    configureEmprestimoRouting(EmprestimoService(database))
+    configureItemEmprestimoRouting(ItemEmprestimoService(database))
     //configureUserLoginRouting(UserLoginService(database))
     configureAuthRouting(jwtService, UsuarioService(database))
 }

@@ -1,47 +1,80 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "../../axiosInstance";
-import Card from '../../components/card/Card'
 import '../../components/form/FormSelect.css'
 import '../../components/form/Form.css'
-import { IoSearchOutline } from "react-icons/io5";
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
+import '../../components/Body.css';
 import Paper from '@mui/material/Paper';
 import FormInput from '../../components/form/FormInput';
 import Button from '@mui/material/Button';
 
-function AddSecao() {
+function Exemplar() {
     const [values, setValues] = useState( {
-        idBiblioteca: 0,
-        nomeSecao: "",
-        siglaSecao: "",
+        idMaterial: 0,
+        statusItem: 0,
+        colecao: "",
+        paginas: 0,
+        numReservas: 0,
+        codigoDeBarras: "",
+        localizacaoItem: ""
     });
 
-    const [biblioteca, getBiblioteca] = useState( {
-        idBiblioteca: "",
-        nome: ""
-    });
+    const [idMaterial, setIdMaterial] = useState([]);
 
     const inputs = [
         {
             id: 2,
-            name: "nomeSecao",
+            name: "colecao",
             type: "text",
-            placeholder: "Nome da seção",
-            label: "Nome da seção",
-            //errorMessage: "Campo obrigatório!",
+            placeholder: "Coleção",
+            label: "Coleção",
             required: true,
-            width: '100%'
+            width: '50%'
         },
         {
             id: 3,
-            name: "siglaSecao",
-            type: "text",
-            placeholder: "Sigla",
-            //errorMessage: "Campo obrigatório!!",
-            label: "Sigla",
-            required: true
+            name: "statusItem",
+            type: "number",
+            placeholder: "Status",
+            label: "Status",
+            required: true,
+            width: '15%'
         },
+        {
+            id: 4,
+            name: "paginas",
+            type: "text",
+            placeholder: "Páginas",
+            label: "Páginas",
+            required: true,
+            width: '15%'
+        },
+        {
+            id: 5,
+            name: "numReservas",
+            type: "text",
+            placeholder: "Número de reservas",
+            label: "Número de reservas",
+            required: true,
+            width: '15%'
+        },
+        {
+            id: 6,
+            name: "localizacaoItem",
+            type: "text",
+            placeholder: "Localização",
+            label: "Localização",
+            required: true,
+            width: '49%'
+        },
+        {
+            id: 7,
+            name: "codigoDeBarras",
+            type: "text",
+            placeholder: "Código de barras",
+            label: "Código de barras",
+            required: true,
+            width: '49%'
+        }
     ]
 
     const handleInput = (e) => {
@@ -50,7 +83,7 @@ function AddSecao() {
 
     const [items, setItems] = useState([]);
     useEffect(() => {
-        axios.get("/bibliotecas").then((res) => {
+        axios.get("/materiais").then((res) => {
             return res.data;
         })
         .then((data) => {
@@ -61,25 +94,29 @@ function AddSecao() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        axios.post('/secoes', values)
+        axios.post('/exemplares', values)
             .then(response => console.log(response))
             .catch(err => console.log(err))
     }
     console.log(values)
+
     return(
+        <section className="containerBody">
+          <div className="containerTop">
+              <h1> Exemplar </h1>
+          </div>
         <Paper>
             <form className="containerForm">
                 <div className="formInput" style={{width: '100%'}}>
-                    <div className="labelForm"> Biblioteca </div>
-                    <select name="idBiblioteca" className='inputForm' onChange={handleInput}>
+                    <div className="labelForm"> Material </div>
+                    <select name="idMaterial" className='inputForm' onChange={handleInput}>
                         {items.map((item) => (
-                            <option key={item.idBiblioteca} value={item.idBiblioteca}>
-                                {item.nome}
+                            <option key={item.idMaterial} value={item.idMaterial}>
+                                {item.titulo}
                             </option>
                         ))}
                     </select>
                 </div>
-                <div className='containerFormSearch'>
                     {inputs.map(
                         (input) => (
                             <FormInput 
@@ -94,13 +131,15 @@ function AddSecao() {
                             />
                         )
                     )}
-                </div>
                 <div className='containerButton'>
                     <Button onClick={handleSubmit} size="large" variant="contained" sx={{textTransform: 'none', marginTop: "25px"}}> Enviar </Button>
                 </div>    
             </form>
         </Paper>
-    )
+
+      </section>
+        
+    );
 }
 
-export default AddSecao
+export default Exemplar

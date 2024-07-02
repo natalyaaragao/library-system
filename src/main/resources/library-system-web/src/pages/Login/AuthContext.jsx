@@ -4,6 +4,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(localStorage.getItem("email"));
   // State to hold the authentication token
   const [token, setToken_] = useState(localStorage.getItem("token"));
 
@@ -27,8 +28,10 @@ const AuthProvider = ({ children }) => {
     () => ({
       token,
       setToken,
+      user,
+      setUser
     }),
-    [token]
+    [token, user]
   );
 
   // Provide the authentication context to the children components

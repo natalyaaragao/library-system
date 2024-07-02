@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
 import './Sidebar.css'
-import { IoHomeOutline, IoSearch, IoBookOutline, IoDocumentTextOutline, IoBookmarkOutline, IoSettingsOutline, IoLibraryOutline } from "react-icons/io5";
+import { IoHomeOutline, IoSearch, IoBookOutline, IoDocumentTextOutline, IoDocumentsOutline, IoBookmarkOutline, IoSettingsOutline, IoLibraryOutline } from "react-icons/io5";
 import { MdShelves } from "react-icons/md";
 import { Link } from "react-router-dom";
+import Divider from '@mui/material/Divider';
 
 export const Sidebar = () => {
   return (
@@ -10,7 +11,6 @@ export const Sidebar = () => {
             <p className='sidebar-title'>library-system</p>
             
             <nav className='nav-list'>
-              <p className='sidebar-subtitle'>titulo-1</p>
               <ul>
                   <li className='menu-item'>
                     <a href="#">
@@ -43,6 +43,12 @@ export const Sidebar = () => {
                     </Link>
                   </li>
                   <li className='menu-item'>
+                    <Link to="/exemplar">
+                      <IoDocumentsOutline className='menu-icon'/>
+                      Exemplar
+                    </Link>
+                  </li>
+                  <li className='menu-item'>
                     <Link to="/emprestimo">
                       <IoBookOutline className='menu-icon'/>
                       Empréstimo
@@ -51,7 +57,7 @@ export const Sidebar = () => {
                 </ul>
             </nav>
             <nav className='nav-list'>
-              <p className='sidebar-subtitle'>titulo-2</p>
+              <Divider center />
               <ul>
                 <li className='menu-item'>
                   <a href="/lista">

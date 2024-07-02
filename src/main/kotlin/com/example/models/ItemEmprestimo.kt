@@ -5,17 +5,19 @@ import com.example.responses.ItemEmprestimoResponse
 data class ItemEmprestimo(
     val idItemEmprestimo: Int,
     val idItemMaterial: Int,
-    val idAdministrador: Int,
+    val idEmprestimo: Int,
     val devolucao: String,
-    val status: Int
+    val status: Int,
+    val prazo: String
 )
 
 fun ItemEmprestimo.toItemEmprestimoResponse(): ItemEmprestimoResponse {
     return ItemEmprestimoResponse(
         idItemEmprestimo = idItemEmprestimo,
         idItemMaterial = idItemMaterial,
-        idAdministrador = idAdministrador,
+        idEmprestimo = idEmprestimo,
         devolucao = devolucao,
-        status = status
+        status = status,
+        prazo = prazo
     )
 }

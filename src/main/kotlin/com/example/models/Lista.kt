@@ -4,7 +4,7 @@ import com.example.responses.ListaResponse
 
 data class Lista(
     val idLista: Int,
-    val idUsuario: Int,
+    val email: String,
     val nomeLista: String,
     val tipoLista: String
 )
@@ -12,7 +12,7 @@ data class Lista(
 fun Lista.toListaResponse(): ListaResponse {
     return ListaResponse(
         idLista = idLista,
-        idUsuario = idUsuario,
+        email = email,
         nomeLista = nomeLista,
         tipoLista = tipoLista
     )

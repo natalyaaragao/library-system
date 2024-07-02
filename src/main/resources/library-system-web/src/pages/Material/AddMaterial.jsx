@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import '../../components/form/Form.css';
+import '../../components/form/FormInput.css'
 import axios from "../../axiosInstance";
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import FormInput from '../../components/form/FormInput';
+import Button from '@mui/material/Button';
 
 function AddMaterial() {
     const [values, setValues] = useState( {
@@ -33,12 +33,21 @@ function AddMaterial() {
             required: true
         },
         {
+            id: 7,
+            name: "assunto",
+            type: "text",
+            placeholder: "Assunto",
+            label: "Assunto",
+            width: '100%',
+            required: true
+        },
+        {
             id: 2,
             name: "descricao",
             type: "text",
             placeholder: "Descrição",
             label: "Descrição",
-            width: '20%',
+            width: '49%',
             required: true,
             multiline: true,
             rows: 2
@@ -49,7 +58,7 @@ function AddMaterial() {
             type: "text",
             placeholder: "Nota",
             label: "Nota",
-            width: '20%',
+            width: '49%',
             required: false,
             multiline: true,
             rows: 2
@@ -60,7 +69,7 @@ function AddMaterial() {
             type: "text",
             placeholder: "Imprenta",
             label: "Imprenta",
-            width: '48%',
+            width: '49%',
             required: true
         },
         {
@@ -69,7 +78,7 @@ function AddMaterial() {
             type: "text",
             placeholder: "Edição",
             label: "Edição",
-            width: '48%',
+            width: '49%',
             required: true
         },
         {
@@ -78,16 +87,7 @@ function AddMaterial() {
             type: "text",
             placeholder: "Autor principal",
             label: "Autor principal",
-            width: '48%',
-            required: true
-        },
-        {
-            id: 7,
-            name: "assunto",
-            type: "text",
-            placeholder: "Assunto",
-            label: "Assunto",
-            width: '48%',
+            width: '49%',
             required: true
         },
         {
@@ -95,14 +95,30 @@ function AddMaterial() {
             name: "autorSecundario",
             type: "text",
             placeholder: "Autor secundário",
-            width: '48%',
+            width: '49%',
             label: "Autor secundário",
+        },
+        {
+            id: 9,
+            name: "idioma",
+            type: "text",
+            placeholder: "Idioma",
+            width: '49%',
+            label: "Idioma",
+        },
+        {
+            id: 9,
+            name: "tipoMaterial",
+            type: "text",
+            placeholder: "Tipo",
+            width: '49%',
+            label: "Tipo",
         }
     ];
 
     function handleSubmit(e) {
         e.preventDefault();
-        axios.post('/material', values)
+        axios.post('/materiais', values)
             .then(response => console.log(response))
             .catch(err => console.log(err))
     }
@@ -124,70 +140,55 @@ function AddMaterial() {
 
     const [secao, setSecao] = useState([]);
     const handleBiblioteca = (e) => {
-        setBiblioteca(e.target.value)
         e.preventDefault();
-        axios.get('/secoes/biblioteca/' + items.idBiblioteca).then((res) => {
-            return res.data;
-        })
-        .then((data) => {
-            console.log(data);
-            setSecao(data);
+        const newBiblioteca = e.target.value;
+        setBiblioteca(newBiblioteca);
+        console.log(newBiblioteca);
+        axios.get('/secoes/biblioteca/' + newBiblioteca).then((res) => {
+            setSecao(res.data);
         })
         .catch(err => console.log(err));
     }
     
     return (
         <Paper>
-            <form className="containerForm" onSubmit={handleSubmit}>
-                <label> Biblioteca </label>
-                <TextField
-                    id="outlined-select-currency"
-                    select
-                    sx={{ width: "100%", backgroundColor: "#F3F5F7" }}
-                    defaultValue="0"
-                    onChange={handleBiblioteca}
-                    name = "idBiblioteca"
-                >
-                    {items.map((option) => (
-                        <MenuItem key={option.idBiblioteca} value={option.idBiblioteca}>
-                        {option.nome}
-                        </MenuItem>
-                    ))}
-                </TextField>
-                <label> Seção </label>
-                <TextField
-                    id="outlined-select-currency"
-                    select
-                    sx={{ width: "100%", backgroundColor: "#F3F5F7" }}
-                    defaultValue="0"
-                    onChange={handleInput}
-                    name = "idSecao"
-                >
-                    {secao.map((option) => (
-                        <MenuItem key={option.idSecao} value={option.idSecao}>
-                        {option.nomeSecao}
-                        </MenuItem>
-                    ))}
-                </TextField>
+            <form className="containerForm">
+            <div className="formInput" style={{width: '100%'}}>
+                <div className="labelForm"> Biblioteca </div>
+                    <select name="biblioteca" className='inputForm' onChange={handleBiblioteca}>
+                        {items.map((item) => (
+                            <option key={item.idBiblioteca} value={item.idBiblioteca}>
+                                {item.nome}
+                            </option>
+                        ))}
+                    </select>
+                </div>
+                <div className="formInput" style={{width: '100%'}}>
+                    <div className="labelForm"> Seção </div>
+                    <select name="idSecao" className='inputForm' onChange={handleInput}>
+                        {secao.map((item) => (
+                            <option key={item.idSecao} value={item.idSecao}>
+                                {item.nomeSecao}
+                            </option>
+                        ))}
+                    </select>
+                </div>
                 {inputs.map(
                     (input) => (
-                        <div className='formInput'>
-                            <label> {input.label} </label>
-                            <OutlinedInput 
-                                key = {input.id}
-                                onChange={handleInput}
-                                sx={{ width: "100%", backgroundColor: "#F3F5F7" }}
-                                value = {values[input.name]}
-                                name = {input.name}
-                                multiline = {input.multiline}
-                                rows={input.rows}
-                            />
-                        </div>
-                    
+                        <FormInput 
+                            key = {input.id}
+                            label = {input.label}
+                            onChange={handleInput}
+                            style={{ width: input.width }}
+                            value = {values[input.name]}
+                            name = {input.name}
+                            multiline = {input.multiline}
+                            {...input}
+                        />                    
                     )
                 )}
                 <div className='containerButton'>
-                    <button className="inputButton">Enviar</button>
+                    <Button onClick={handleSubmit} size="large" variant="contained" sx={{textTransform: 'none', marginTop: "25px"}}>Enviar</Button>
                 </div>
             </form>
         </Paper>
@@ -195,20 +196,3 @@ function AddMaterial() {
 }
 
 export default AddMaterial
-
-/*
-<TextField
-                                key = {input.id}
-                                label={input.label}
-                                id="outlined-size-normal"
-                                //defaultValue=" "
-                                onChange={handleInput}
-                                sx={{ m: 1, width: input.width, backgroundColor: "#ccc" }}
-                                value = {values[input.name]}
-                                name = {input.name}
-                                multiline = {input.multiline}
-                                rows={input.rows}
-                                color="secondary"
-                            />
-
-*/
