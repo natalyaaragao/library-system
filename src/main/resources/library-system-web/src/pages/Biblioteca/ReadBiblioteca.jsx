@@ -8,13 +8,11 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import MenuItem from '@mui/material/MenuItem';
 
-function FilterBiblioteca({filterText, cidade, area, items}) {
+function FilterBiblioteca({filterText, cidade, items}) {
     const aux = [];
 
     items.forEach((i) => {
-        if(cidade === "Todas" && area === "Todas") aux.push(i);
-        else if ( (cidade === "Todas" && area === i.areas)) aux.push(i);
-        else if (cidade === i.cidade && area === i.areas) aux.push(i); 
+        if(cidade === "Todas") aux.push(i);
         else if ( cidade === i.cidade ) aux.push(i);
     });
 
@@ -46,7 +44,6 @@ function FilterBiblioteca({filterText, cidade, area, items}) {
 function ReadBiblioteca() {
     const [items, setItems] = useState([]);
     const [city, setCity] = useState("Todas");
-    const [area, setArea] = useState("Todas");
     const [filterText, setFilterText] = useState('');
     useEffect(() => {
         axios.get("/bibliotecas").then((res) => {
@@ -69,13 +66,6 @@ function ReadBiblioteca() {
         {value: 8, name: 'São Carlos'},
         {value: 9, name: 'São Paulo'},
         {value: 10, name: 'São Sebastião'}
-    ]
-
-    const areaC = [
-        {value: 0, name: 'Todas'},
-        {value: 1, name: 'Humanas'},
-        {value: 2, name: 'Exatas'},
-        {value: 3, name: 'Biológicas'}
     ]
           
     return (
@@ -111,24 +101,9 @@ function ReadBiblioteca() {
                         </MenuItem>
                     ))}
                 </TextField>
-                <TextField
-                    select
-                    fullWidth
-                    label="Área do conhecimento"
-                    defaultValue={areaC[0].name}
-                    onChange={e => setArea(e.target.value)}
-                    name = "area"
-                    sx={{ m: 1, width: '48%' }}
-                >
-                    {areaC.map((option) => (
-                        <MenuItem key={option.value} value={option.name}>
-                            {option.name}
-                        </MenuItem>
-                    ))}
-                </TextField>
             </form>
             {   (items.length > 0) ? 
-                <FilterBiblioteca filterText={filterText} cidade = {city} area = {area} items = {items} />
+                <FilterBiblioteca filterText={filterText} cidade = {city} items = {items} />
                 : <></> 
             }
         </div>

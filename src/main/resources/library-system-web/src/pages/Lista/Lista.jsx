@@ -25,7 +25,7 @@ function Lista() {
                         </Button>
                     }
             </div>
-            {toggle && <AddListasOp /> }
+            {toggle && <AddListasOp email = {user} /> }
             {!toggle && <ReadLista email = {user} /> }
         </section>
     );

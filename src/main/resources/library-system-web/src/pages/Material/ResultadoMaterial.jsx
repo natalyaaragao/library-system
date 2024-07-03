@@ -7,58 +7,61 @@ import CustomTable from '../../components/table/CustomTable'
 import { Paper } from '@mui/material';
 import { useParams } from 'react-router-dom';
 
-function createData(titulo, status, emprestimo, localizacao) {
-    return {titulo, status, emprestimo, localizacao};
+function createData(titulo, status, localizacao) {
+    if(status === 1) status = "Disponível"
+    else status = "Indisponível"
+    return {titulo, status, localizacao};
 }
 
 export default function ResultadoMaterial() {
     const { id } = useParams();
 
-    const [item, setItem] = useState([])
+    const [item, setItem] = useState([{
+        titulo: " ",
+        entradaPrincipal: "",
+        assunto: "",
+        edicao: "",
+        paginas: "",
+        imprenta: "",
+        colecao: "",
+        nomeBiblioteca: "",
+        statusItem: "",
+        localizacaoItem: ""
+    }])
+
     useEffect(() => {
         axios.get(`/materialdetalhado/${id}`)
-        .then((res) => res.data)
-        .then((data) => {
-            setItem(data);
-            console.log(data)
+        .then((res) => {
+            setItem(res.data);            
         })
         .catch(err => console.log(err));
     }, [id]);
 
-    const data = {
-        nome: "Clean Code",
-        autor: "Robert C. Martin",
-        idioma: "Português",
-        tipo: "Livro",
-        dataPublicacao: 2012,
-        formato: "4v",
-        editor: "Prentice Hall",
-        assuntos: "Desenvolvimento de Software"
-    }
-
     const col = [
         { id: 'titulo', label: 'Biblioteca', minWidth: 270 },
         { id: 'status', label: 'Status', minWidth: 100, tag: true, color: '#ccc' },
-        { id: 'emprestimo', label: 'Empréstimo', minWidth: 100, tag: true, color: '#f1f1f1' },
-        { id: 'localizacao', label: 'Localização', minWidth: 270 }
+        { id: 'localizacao', label: 'Localização', minWidth: 270, tag: true, color: '#f1f1f1' },
     ];
 
-    const row = [
-        createData('IME – Instituto de Matemática e Estatística', 'Disponível', 'Sim', 'QA762 S449i e.2'),
-        createData('IME – Instituto de Matemática e Estatística', 'Indisponível', 'Não', 'QA762 S449i e.3'),
-        createData('IME – Instituto de Matemática e Estatística', 'Indisponível', 'Não', 'QA762 S449i e.4'),
-    ];
+    const [row, setRow] = useState([]);
+
+    const formatTableData = () => {
+        return item.map(i => (
+          createData(i.nomeBiblioteca, i.statusItem, i.localizacaoItem)
+        ));
+    };
 
     return (
         <section className="containerBody">
+            {item.length > 0 ?
             <Paper>
                 <div className="containerForm">
-                    <h1>{data.nome}</h1>
+                    <h1> {item[0].titulo} </h1>
                     <div>
                         <TextField
                             id="outlined-read-only-input"
                             label="Autor"
-                            defaultValue={data.autor}
+                            value={item[0].entradaPrincipal}
                             InputProps={{
                                 readOnly: true,
                             }}
@@ -66,8 +69,8 @@ export default function ResultadoMaterial() {
                         />
                         <TextField
                             id="outlined-read-only-input"
-                            label="Idioma"
-                            defaultValue={data.idioma}
+                            label="Páginas"
+                            value={item[0].paginas}
                             InputProps={{
                                 readOnly: true,
                             }}
@@ -75,26 +78,8 @@ export default function ResultadoMaterial() {
                         />
                         <TextField
                             id="outlined-read-only-input"
-                            label="Tipo de material"
-                            defaultValue={data.tipo}
-                            InputProps={{
-                                readOnly: true,
-                            }}
-                            sx={{ m: 1, width: '28%' }}
-                        />
-                        <TextField
-                            id="outlined-read-only-input"
-                            label="Data de publicação"
-                            defaultValue={data.dataPublicacao}
-                            InputProps={{
-                                readOnly: true,
-                            }}
-                            sx={{ m: 1, width: '18%' }}
-                        />
-                        <TextField
-                            id="outlined-read-only-input"
-                            label="Formato"
-                            defaultValue={data.formato}
+                            label="Edição"
+                            value={item[0].edicao}
                             InputProps={{
                                 readOnly: true,
                             }}
@@ -103,7 +88,16 @@ export default function ResultadoMaterial() {
                         <TextField
                             id="outlined-read-only-input"
                             label="Editor"
-                            defaultValue={data.editor}
+                            value={item[0].imprenta}
+                            InputProps={{
+                                readOnly: true,
+                            }}
+                            sx={{ m: 1, width: '48%' }}
+                        />
+                        <TextField
+                            id="outlined-read-only-input"
+                            label="Coleção"
+                            value={item[0].colecao}
                             InputProps={{
                                 readOnly: true,
                             }}
@@ -112,17 +106,17 @@ export default function ResultadoMaterial() {
                         <TextField
                             id="outlined-read-only-input"
                             label="Assuntos"
-                            defaultValue={data.assuntos}
+                            value={item[0].assunto}
                             InputProps={{
                                 readOnly: true,
                             }}
                             sx={{ m: 1, width: '97%' }}
                         />
                     </div>
-                    <CustomTable columns = {col} rows = {row} />
+                    <CustomTable columns = {col} rows = {formatTableData()} />
                 </div>
-                
             </Paper>
+            : <h1>Não há cadastro!</h1>}
         </section>
     );
 }

@@ -14,14 +14,16 @@ function AddItemLista(props) {
     const [listas, setListas] = useState([])
     const [materiais, setMateriais] = useState([])
     
-    const [values, setValues] = useState( {
+    const [values, setValues] = useState({
         idLista: 0,
         nomeMaterial: ""
     });
 
     const handleInput = (e) => {
-        setValues({...values, [e.target.name]: e.target.value})
-        console.log(values)
+        const { name, value } = e.target;
+        const newValues = { ...values, [name]: value };
+        setValues(newValues);
+        console.log(newValues);  // Loga o valor atualizado
     }
     
     useEffect(() => {
@@ -55,6 +57,7 @@ function AddItemLista(props) {
             <div className="formInput" style={{width: '100%'}}>
                 <div className="labelForm"> Lista </div>
                 <select name="idLista" className='inputForm' onChange={handleInput}>
+                    <option value="0">Selecione uma lista</option>
                     {listas.map((item) => (
                         <option key={item.idLista} value={item.idLista}>
                             {item.nomeLista}

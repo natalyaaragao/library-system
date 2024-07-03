@@ -11,7 +11,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 
 
-function AddListasOp() {
+function AddListasOp(props) {
     return (
         <div style={{overflow: "auto", marginBottom: "100px"}}>
             <Accordion>
@@ -23,7 +23,7 @@ function AddListasOp() {
                     <h3>Criar lista</h3>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <AddLista email = "user@email.com"/>
+                    <AddLista email = {props.email}/>
                 </AccordionDetails>
             </Accordion>
             <Accordion>
@@ -35,7 +35,7 @@ function AddListasOp() {
                     <h3>Adicionar item</h3>
                 </AccordionSummary>
                 <AccordionDetails>
-                    <AddItemLista email = "user@email.com"/>
+                    <AddItemLista email = {props.email}/>
                 </AccordionDetails>
             </Accordion>
         </div>
