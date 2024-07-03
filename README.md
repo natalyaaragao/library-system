@@ -20,6 +20,7 @@ Funcionalidades projetadas:
 - Front-End: Funcional, porém com algumas partes ainda em desenvolvimento.
     - Módulo de Empréstimo: Ainda não finalizado.
     - Tela de Meus Empréstimos: Atualmente estática e sem funcionalidade dinâmica.
+    - Edição e Exclusão dos dados: Ainda não finalizado. 
 
 # Execução
 
