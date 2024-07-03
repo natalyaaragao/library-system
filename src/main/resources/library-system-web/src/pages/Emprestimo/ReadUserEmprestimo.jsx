@@ -83,8 +83,3 @@ function ReadUserEmprestimo() {
 }
 
 export default ReadUserEmprestimo
-
-/*<p>{emprestimo.idEmprestimo}</p>
-<p>{emprestimo.idUsuario}</p>
-<p>{emprestimo.qtdItens}</p>
-<p>{emprestimo.statusUsuario}</p>*/
