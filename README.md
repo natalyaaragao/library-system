@@ -10,6 +10,17 @@ Funcionalidades projetadas:
 - Organização de leituras pessoais;
 - Listas de leituras;
 
+# Estrutura do Projeto
+- Back-End: Desenvolvido utilizando Ktor, responsável por gerenciar a lógica e a comunicação com o banco de dados;
+- Front-End: Desenvolvido com React e Vite, responsável pela interface do usuário e a interação com o back-end. Utiliza endpoints para se comunicar com o back-end;
+- Banco de dados: Desenvolvido com H2;
+
+# Status do Projeto
+- Back-End: Funcional e implementado conforme os requisitos do projeto.
+- Front-End: Funcional, porém com algumas partes ainda em desenvolvimento.
+    - Módulo de Empréstimo: Ainda não finalizado.
+    - Tela de Meus Empréstimos: Atualmente estática e sem funcionalidade dinâmica.
+
 # Execução
 
 Execute:
@@ -31,6 +42,8 @@ Para a interface visual, vá até src > main > resources > library-system-web e 
   ```bash
   npm run dev
   ```
+
+Observação: Ao acessar a aplicação, comece pelo endpoint `/login`
 
 Para testes, execute:
  ```bash
